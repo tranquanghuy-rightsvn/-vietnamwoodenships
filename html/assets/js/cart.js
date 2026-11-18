@@ -14,7 +14,7 @@
     errEmail: 'Invalid email address.', errAddress: 'Please enter your delivery address.',
     payQr: 'Please scan the QR code below to pay. We will confirm your order as soon as payment is received.',
     payCod: 'You will pay in cash on delivery. Our staff will call you to confirm the order.',
-    product: 'product/', locale: 'en-US'
+    product: '/product/', locale: 'en-US'
   } : {
     contact: 'Liên hệ', dec: 'Giảm', inc: 'Tăng', qty: 'Số lượng', remove: 'Xóa',
     removeItem: function (n) { return 'Xóa ' + n + ' khỏi giỏ hàng'; },
@@ -22,14 +22,17 @@
     errEmail: 'Email không hợp lệ.', errAddress: 'Vui lòng nhập địa chỉ nhận hàng.',
     payQr: 'Vui lòng quét mã QR bên dưới để thanh toán. Chúng tôi sẽ xác nhận đơn ngay khi nhận được tiền.',
     payCod: 'Bạn sẽ thanh toán bằng tiền mặt khi nhận hàng. Nhân viên sẽ liên hệ xác nhận đơn qua điện thoại.',
-    product: 'sp/', locale: 'vi-VN'
+    product: '/sp/', locale: 'vi-VN'
   };
   // English names / URLs of products (assets/js/catalog.js, English pages only)
   var CATALOG = (EN && window.HTY_CATALOG) || {};
   function itemName(i) { return CATALOG[i.slug] ? CATALOG[i.slug].name : i.name; }
   function itemUrl(i) {
-    return T.product + (CATALOG[i.slug] ? CATALOG[i.slug].slug : i.slug) + '/index.html';
+    return T.product + (CATALOG[i.slug] ? CATALOG[i.slug].slug : i.slug) + '/';
   }
+
+  // carts saved before the move hold 'assets/...' paths
+  function imgUrl(src) { return src && !/^(\/|https?:|data:)/.test(src) ? '/' + src : src; }
 
   function each(list, fn) { Array.prototype.forEach.call(list, fn); }
   function $(sel, root) { return (root || document).querySelector(sel); }
@@ -141,7 +144,7 @@
       cart.forEach(function (i, idx) {
         var row = el('div', 'cart-row');
         var a = el('a', 'cart-thumb'); a.href = itemUrl(i);
-        var img = el('img'); img.src = i.img; img.alt = itemName(i); a.appendChild(img);
+        var img = el('img'); img.src = imgUrl(i.img); img.alt = itemName(i); a.appendChild(img);
         row.appendChild(a);
 
         var info = el('div', 'cart-info');

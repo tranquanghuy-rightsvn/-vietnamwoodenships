@@ -18,16 +18,30 @@ def resolve(page, ref):
     if re.match(r'^(https?:)?//|^(mailto|tel|javascript|data):', ref):
         ext.add(ref.split('?')[0][:70])
         return None
-    base = os.path.dirname(page)
-    return os.path.normpath(os.path.join(base, urllib.parse.unquote(ref)))
+    ref = urllib.parse.unquote(ref)
+    if ref.startswith('/'):
+        t = os.path.join(ROOT, ref.lstrip('/'))
+    else:
+        t = os.path.join(os.path.dirname(page), ref)
+    if ref.endswith('/'):
+        t = os.path.join(t, 'index.html')
+    return os.path.normpath(t)
+
+# page links must be /slug/ — never slug.html, never /slug
+bad_form = []
 
 for page in pages:
     s = open(page, encoding='utf-8').read()
-    for m in re.finditer(r'\shref="([^"]+)"', s):
+    for m in re.finditer(r'\s(?:href|action)="([^"]+)"', s):
+        v = m.group(1).split('#')[0].split('?')[0]
+        if v and not re.match(r'^(https?:)?//|^(mailto|tel|javascript|data):', v) and "'" not in v:
+            last = v.rsplit('/', 1)[-1]
+            if v.endswith('.html') or not v.startswith('/') or (last and '.' not in last):
+                bad_form.append((page, m.group(1)))
         t = resolve(page, m.group(1))
         if t and not os.path.exists(t):
             bad_links.append((page, m.group(1)))
-    for m in re.finditer(r'\ssrc="([^"]+)"', s):
+    for m in re.finditer(r'\s(?:src|data-full|data-img)="([^"]+)"', s):
         t = resolve(page, m.group(1))
         if t and not os.path.exists(t):
             bad_assets.append((page, m.group(1)))
@@ -40,6 +54,9 @@ for page in pages:
 print('pages           :', len(pages))
 print('broken links    :', len(bad_links))
 for p, r in bad_links[:15]:
+    print('   ', p, '->', r)
+print('non-/slug/ links:', len(bad_form))
+for p, r in bad_form[:15]:
     print('   ', p, '->', r)
 print('broken assets   :', len(bad_assets))
 for p, r in bad_assets[:15]:

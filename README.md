@@ -9,7 +9,7 @@ catalogue. No framework, no build step, no runtime dependencies.
 ```bash
 cd html
 python -m http.server 8900
-# http://127.0.0.1:8900/index.html
+# http://127.0.0.1:8900/   (pages are /slug/ -> slug/index.html)
 ```
 
 Any static host works — the output is plain files.
@@ -19,12 +19,12 @@ Any static host works — the output is plain files.
 ```
 html/                       the deliverable
   index.html                home page (the clone target)
-  san-pham.html             all products, grouped by category
-  tim-kiem.html             client-side search over products.json
+  san-pham/                 all products, grouped by category
+  tim-kiem/                 client-side search over products.json
   danh-muc/<slug>/          7 category listings
   sp/<slug>/                32 product pages
-  gioi-thieu.html · lien-he.html · huong-dan*.html · gio-hang.html · tai-khoan.html
-  home.html · cart.html · about.html · …   English twin of every page above
+  gioi-thieu/ · lien-he/ · huong-dan*/ · gio-hang/ · tai-khoan/
+  home/ · cart/ · about/ · …   English twin of every page above
   category/<slug>/ · product/<slug>/       English twins of danh-muc/ and sp/
   assets/
     css/style.css           ~980 lines, tokens first, then components
@@ -62,13 +62,24 @@ python scripts/check_site.py     # verify every href/src resolves
 python scripts/seo.py            # meta, canonical, hreflang, OG, JSON-LD, robots.txt, sitemap.xml
 ```
 
+## URLs
+
+Every page lives at `<slug>/index.html` and every internal link is a
+root-absolute directory URL with a trailing slash: `/`, `/gioi-thieu/`,
+`/sp/victory/`, `/assets/css/style.css`. No `slug.html`, no `/slug`.
+Vercel serves `html/` as-is (`vercel.json`: `trailingSlash: true` redirects
+`/slug` -> `/slug/`). `scripts/restructure_urls.py` performs the conversion and
+is safe to re-run after adding pages; `scripts/check_site.py` flags any link
+not in `/slug/` form. Serve over HTTP (root-absolute links do not work from
+`file://`).
+
 ## SEO
 
 `scripts/seo.py` rewrites one `<!-- seo:start --> … <!-- seo:end -->` block in
 the `<head>` of every page in `html/` (idempotent — run it after any edit):
 
 - meta description / robots, canonical, hreflang `vi` / `en` / `x-default`,
-  Open Graph and Twitter card — all absolute clean URLs (`https://vietnamwoodenships.com/sp/victory`)
+  Open Graph and Twitter card — all absolute `/slug/` URLs (`https://vietnamwoodenships.com/sp/victory/`)
 - JSON-LD `@graph`: Organization, WebSite (+ SearchAction), the page
   (WebPage / AboutPage / ContactPage / CollectionPage / ItemPage), BreadcrumbList,
   Product (product pages, Offer only when a real price exists), ItemList (listings)

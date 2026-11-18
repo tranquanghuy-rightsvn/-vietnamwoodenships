@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
-Disallow: /tim-kiem?
-Disallow: /search?
+Disallow: /tim-kiem/?
+Disallow: /search/?
 Disallow: /*?s=
 
 Sitemap: https://vietnamwoodenships.com/sitemap.xml

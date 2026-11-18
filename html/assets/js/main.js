@@ -284,7 +284,7 @@
       var q   = qField ? qField.value.trim() : '';
       var cat = cField ? cField.value : '';
       // the form's action is the search page of the current language
-      var url = (form.getAttribute('action') || 'tim-kiem.html') + '?s=' + encodeURIComponent(q);
+      var url = (form.getAttribute('action') || '/tim-kiem/') + '?s=' + encodeURIComponent(q);
       if (cat) url += '&cat=' + encodeURIComponent(cat);
       window.location.href = url;
     });

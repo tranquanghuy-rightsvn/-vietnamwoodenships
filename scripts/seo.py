@@ -8,8 +8,8 @@ For each page it (re)writes one block in <head>, between
   Open Graph, Twitter card and a JSON-LD @graph
   (Organization, WebSite, WebPage/ItemPage/..., BreadcrumbList, Product, ItemList).
 
-All URLs are absolute clean URLs (/sp/victory, /about) — the form Vercel serves
-(see vercel.json + clean_urls.py). Idempotent: safe to run after every edit.
+All URLs are absolute directory URLs with a trailing slash (/sp/victory/,
+/about/), each served from <slug>/index.html (see vercel.json). Idempotent: safe to run after every edit.
 
     python3 scripts/seo.py                    # uses https://vietnamwoodenships.com
     SITE_URL=https://example.com python3 scripts/seo.py
@@ -30,43 +30,43 @@ LOGO = "/assets/img/2023/06/logo.jpg"
 # Pages with no search value (per-user state, or no real content yet):
 # noindex,follow and left out of the sitemap.
 NOINDEX = {
-    "gio-hang.html", "cart.html", "thanh-toan.html", "checkout.html",
-    "tai-khoan.html", "account.html", "tim-kiem.html", "search.html",
-    "huong-dan.html", "guide.html",
+    "gio-hang", "cart", "thanh-toan", "checkout",
+    "tai-khoan", "account", "tim-kiem", "search",
+    "huong-dan", "guide",
 }
 
 # Descriptions for pages that had none (or only a stub).
 DESC = {
-    "gioi-thieu.html": "Hoa Tay Việt – xưởng sản xuất thuyền mỹ nghệ tại Long Thành, Đồng Nai, chuyên chế tác thủ công và xuất khẩu mô hình tàu, du thuyền, thuyền buồm và nội thất gỗ.",
-    "about.html": "Hoa Tay Viet – an art boat workshop in Long Thanh, Dong Nai, Vietnam, handcrafting and exporting ship models, yachts, sailing boats and wooden furniture.",
-    "lien-he.html": "Liên hệ Hoa Tay Việt để được tư vấn mẫu mã, kích thước và báo giá mô hình thuyền: 199 ấp 1B, Phước Thái, Long Thành, Đồng Nai – 0908 062 685.",
-    "contact.html": "Contact Hoa Tay Viet for advice on models, sizes and a quote for handmade ship models: 199 Hamlet 1B, Phuoc Thai, Long Thanh, Dong Nai – +84 908 062 685.",
-    "tin-tuc.html": "Tin tức, kiến thức và hướng dẫn chọn mua, bảo quản mô hình tàu thuyền thủ công từ xưởng Hoa Tay Việt.",
-    "news.html": "News, tips and guides on choosing and caring for handmade ship models from the Hoa Tay Viet workshop.",
-    "huong-dan-mua-hang.html": "Hướng dẫn mua hàng tại Hoa Tay Việt: chọn sản phẩm, thêm vào giỏ hàng, kiểm tra giỏ và thanh toán khi nhận hàng hoặc quét mã QR.",
-    "buying-guide.html": "How to buy at Hoa Tay Viet: choose a product, add it to the cart, review your cart and pay on delivery or by QR code.",
-    "huong-dan-su-dung.html": "Hướng dẫn sử dụng và bảo quản mô hình thuyền gỗ thủ công Hoa Tay Việt: đặt nơi khô ráo, tránh nắng gắt, vệ sinh và cầm đúng cách.",
-    "user-guide.html": "How to care for your handmade Hoa Tay Viet wooden boat model: keep it dry, out of strong sun, dust it gently and handle it correctly.",
-    "huong-dan.html": "Hướng dẫn mua hàng và sử dụng sản phẩm thuyền mỹ nghệ Hoa Tay Việt.",
-    "guide.html": "Guides for buying and using Hoa Tay Viet art boat products.",
-    "gio-hang.html": "Giỏ hàng của bạn tại Hoa Tay Việt.",
-    "cart.html": "Your shopping cart at Hoa Tay Viet.",
-    "thanh-toan.html": "Thanh toán đơn hàng tại Hoa Tay Việt – thanh toán khi nhận hàng hoặc quét mã QR.",
-    "checkout.html": "Checkout at Hoa Tay Viet – pay on delivery or by QR code.",
-    "tai-khoan.html": "Đăng nhập tài khoản Hoa Tay Việt.",
-    "account.html": "Sign in to your Hoa Tay Viet account.",
-    "tim-kiem.html": "Tìm kiếm sản phẩm thuyền mỹ nghệ Hoa Tay Việt theo tên, mã sản phẩm hoặc danh mục.",
-    "search.html": "Search Hoa Tay Viet art boat products by name, product code or category.",
-    "san-pham.html": "Toàn bộ 32 sản phẩm thủ công của Hoa Tay Việt: mô hình tàu du lịch, du thuyền, tàu chở hàng, thuyền buồm, thuyền đi dạo và nội thất gỗ.",
-    "products.html": "All 32 handmade products of Hoa Tay Viet: cruise ship and yacht models, cargo ships, sailing boats, leisure boats and wooden furniture.",
+    "gioi-thieu": "Hoa Tay Việt – xưởng sản xuất thuyền mỹ nghệ tại Long Thành, Đồng Nai, chuyên chế tác thủ công và xuất khẩu mô hình tàu, du thuyền, thuyền buồm và nội thất gỗ.",
+    "about": "Hoa Tay Viet – an art boat workshop in Long Thanh, Dong Nai, Vietnam, handcrafting and exporting ship models, yachts, sailing boats and wooden furniture.",
+    "lien-he": "Liên hệ Hoa Tay Việt để được tư vấn mẫu mã, kích thước và báo giá mô hình thuyền: 199 ấp 1B, Phước Thái, Long Thành, Đồng Nai – 0908 062 685.",
+    "contact": "Contact Hoa Tay Viet for advice on models, sizes and a quote for handmade ship models: 199 Hamlet 1B, Phuoc Thai, Long Thanh, Dong Nai – +84 908 062 685.",
+    "tin-tuc": "Tin tức, kiến thức và hướng dẫn chọn mua, bảo quản mô hình tàu thuyền thủ công từ xưởng Hoa Tay Việt.",
+    "news": "News, tips and guides on choosing and caring for handmade ship models from the Hoa Tay Viet workshop.",
+    "huong-dan-mua-hang": "Hướng dẫn mua hàng tại Hoa Tay Việt: chọn sản phẩm, thêm vào giỏ hàng, kiểm tra giỏ và thanh toán khi nhận hàng hoặc quét mã QR.",
+    "buying-guide": "How to buy at Hoa Tay Viet: choose a product, add it to the cart, review your cart and pay on delivery or by QR code.",
+    "huong-dan-su-dung": "Hướng dẫn sử dụng và bảo quản mô hình thuyền gỗ thủ công Hoa Tay Việt: đặt nơi khô ráo, tránh nắng gắt, vệ sinh và cầm đúng cách.",
+    "user-guide": "How to care for your handmade Hoa Tay Viet wooden boat model: keep it dry, out of strong sun, dust it gently and handle it correctly.",
+    "huong-dan": "Hướng dẫn mua hàng và sử dụng sản phẩm thuyền mỹ nghệ Hoa Tay Việt.",
+    "guide": "Guides for buying and using Hoa Tay Viet art boat products.",
+    "gio-hang": "Giỏ hàng của bạn tại Hoa Tay Việt.",
+    "cart": "Your shopping cart at Hoa Tay Viet.",
+    "thanh-toan": "Thanh toán đơn hàng tại Hoa Tay Việt – thanh toán khi nhận hàng hoặc quét mã QR.",
+    "checkout": "Checkout at Hoa Tay Viet – pay on delivery or by QR code.",
+    "tai-khoan": "Đăng nhập tài khoản Hoa Tay Việt.",
+    "account": "Sign in to your Hoa Tay Viet account.",
+    "tim-kiem": "Tìm kiếm sản phẩm thuyền mỹ nghệ Hoa Tay Việt theo tên, mã sản phẩm hoặc danh mục.",
+    "search": "Search Hoa Tay Viet art boat products by name, product code or category.",
+    "san-pham": "Toàn bộ 32 sản phẩm thủ công của Hoa Tay Việt: mô hình tàu du lịch, du thuyền, tàu chở hàng, thuyền buồm, thuyền đi dạo và nội thất gỗ.",
+    "products": "All 32 handmade products of Hoa Tay Viet: cruise ship and yacht models, cargo ships, sailing boats, leisure boats and wooden furniture.",
 }
 
 PAGE_TYPE = {
-    "gioi-thieu.html": "AboutPage", "about.html": "AboutPage",
-    "lien-he.html": "ContactPage", "contact.html": "ContactPage",
-    "tim-kiem.html": "SearchResultsPage", "search.html": "SearchResultsPage",
-    "tin-tuc.html": "CollectionPage", "news.html": "CollectionPage",
-    "san-pham.html": "CollectionPage", "products.html": "CollectionPage",
+    "gioi-thieu": "AboutPage", "about": "AboutPage",
+    "lien-he": "ContactPage", "contact": "ContactPage",
+    "tim-kiem": "SearchResultsPage", "search": "SearchResultsPage",
+    "tin-tuc": "CollectionPage", "news": "CollectionPage",
+    "san-pham": "CollectionPage", "products": "CollectionPage",
 }
 
 START, END = "<!-- seo:start -->", "<!-- seo:end -->"
@@ -82,13 +82,13 @@ def rel(f):
 
 
 def clean_path(path):
-    """'sp/x/index.html' -> '/sp/x', 'about.html' -> '/about', 'index.html' -> '/'."""
+    """'sp/x/index.html' -> '/sp/x/', 'about/index.html' -> '/about/', 'index.html' -> '/'."""
     path = "/" + path.lstrip("/")
     if path.endswith("index.html"):
         path = path[: -len("index.html")]
     elif path.endswith(".html"):
         path = path[: -len(".html")]
-    return path.rstrip("/") or "/"
+    return path.rstrip("/") + "/"
 
 
 def resolve(href, page_rel):
@@ -249,10 +249,10 @@ def process(f, today):
     lang = re.search(r'<html lang="([a-z]+)"', src).group(1)
     title = text(re.search(r"<title>(.*?)</title>", src, re.S).group(1))
     old_desc = re.search(r'<meta name="description" content="([^"]*)">', src)
-    desc = DESC.get(r) or (H.unescape(old_desc.group(1)) if old_desc else "")
+    desc = DESC.get(clean_path(r).strip("/")) or (H.unescape(old_desc.group(1)) if old_desc else "")
 
     # hreflang pairs come from the page itself (built by build_en.py)
-    alts = {hl: (re.sub(r"^https?://[^/]+", BASE, h) if h.startswith("http") else url_of(h, r)) for hl, h in
+    alts = {hl: (BASE + clean_path(re.sub(r"^https?://[^/]+", "", h)) if h.startswith("http") else url_of(h, r)) for hl, h in
             re.findall(r'<link rel="alternate" hreflang="(vi|en)" href="([^"]+)">', src)}
     src = re.sub(r"\n?" + re.escape(START) + r".*?" + re.escape(END), "", src, flags=re.S)
     canonical = BASE + clean_path(r)
@@ -262,9 +262,9 @@ def process(f, today):
 
     is_product = r.startswith(("sp/", "product/"))
     is_category = r.startswith(("danh-muc/", "category/"))
-    is_home = r in ("index.html", "home.html")
-    name = os.path.basename(r)
-    noindex = name in NOINDEX and "/" not in r
+    is_home = r in ("index.html", "home/index.html")
+    name = clean_path(r).strip("/")          # 'gioi-thieu', 'sp/victory', '' (home)
+    noindex = name in NOINDEX
     vi = lang == "vi"
 
     if is_product:
@@ -279,7 +279,7 @@ def process(f, today):
                 f"{cat_name} at Hoa Tay Viet – handmade wooden models crafted in fine detail, made to order and exported worldwide.")
 
     image = BASE + LOGO
-    graph = [org(lang), website(lang, "/tim-kiem" if vi else "/search")]
+    graph = [org(lang), website(lang, "/tim-kiem/" if vi else "/search/")]
     page_type = "ItemPage" if is_product else "CollectionPage" if is_category else PAGE_TYPE.get(name, "WebPage")
     page = {
         "@type": page_type,
@@ -382,7 +382,7 @@ def main():
     robots = ["User-agent: *", "Allow: /"]
     # Cart/checkout/account/search are noindex; block crawling of search query URLs only,
     # so crawlers can still read the noindex tag on the plain pages.
-    robots += ["Disallow: /tim-kiem?", "Disallow: /search?", "Disallow: /*?s=", ""]
+    robots += ["Disallow: /tim-kiem/?", "Disallow: /search/?", "Disallow: /*?s=", ""]
     robots += [f"Sitemap: {BASE}/sitemap.xml", ""]
     (SITE / "robots.txt").write_text("\n".join(robots), encoding="utf-8")
     n = sum(not p["noindex"] for p in pages)
