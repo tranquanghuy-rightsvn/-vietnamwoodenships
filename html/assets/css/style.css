@@ -796,7 +796,7 @@ body.is-home .mega-menu-list { display: block; }
 .footer-widgets .icon { margin-top: .35em; flex: none; opacity: .9; }
 .footer-widgets a { color: #fff; }
 .footer-widgets a:hover { color: #08c; }
-.footer-widgets .muted { color: var(--c-text); }   /* faithful to the original */
+.footer-widgets .muted { color: #fff; }
 
 .footer-map { width: 100%; height: 150px; border: 0; display: block; }
 
@@ -1406,7 +1406,7 @@ button.cart-icon { background: none; border: 0; padding: 0; margin: 0; font: inh
 @media (max-width: 549px) { .article-head h1 { font-size: 24px; } }
 .article-meta { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 0; font-size: 14px; color: var(--c-muted); }
 .article-cover { margin: 0 0 24px; }
-.article-cover figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--c-muted); }
+.article-cover figcaption { text-align: center; margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--c-muted); }
 .article-cover figcaption .credit { display: block; margin-top: 2px; font-size: 12px; color: #888; }
 .article-cover figcaption .credit a { color: inherit; }
 .article-cover img { display: block; width: 100%; height: auto; max-height: 520px; object-fit: cover; }
@@ -1434,7 +1434,7 @@ button.cart-icon { background: none; border: 0; padding: 0; margin: 0; font: inh
 .article-body blockquote { margin: 1.4em 0; padding: 12px 18px; border-left: 4px solid var(--c-line-soft); color: var(--c-muted); font-style: italic; }
 .article-body figure { margin: 1.6em 0; }
 .article-body figure img { display: block; width: auto; max-width: 100%; height: auto; max-height: 640px; margin: 0 auto; background: #f3f3f3; }
-.article-body figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--c-muted); }
+.article-body figcaption { text-align: center; margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--c-muted); }
 .article-body figcaption .credit { display: block; margin-top: 2px; font-size: 12px; color: #888; }
 .article-body figcaption .credit a { color: inherit; }
 .article-body .callout { padding: 16px 20px; background: #fff8e1; border-left: 4px solid #f0b400; }
