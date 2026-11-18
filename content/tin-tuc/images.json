@@ -1,0 +1,80 @@
+{
+ "hms-victory-portsmouth": {
+  "src": "/assets/img/news/hms-victory-portsmouth.jpg",
+  "author": "mattbuck (category)",
+  "license": "CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Portsmouth_MMB_80_Royal_Naval_Dockyard_-_HMS_Victory.jpg"
+ },
+ "vasa-stern-stockholm": {
+  "src": "/assets/img/news/vasa-stern-stockholm.jpg",
+  "author": "Jules Verne Times Two",
+  "license": "CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Stern_of_the_Vasa_ship,_Vasa_Museum,_Stockholm,_Sweden_julesvernex2.jpg"
+ },
+ "vasa-rigging-shrouds": {
+  "src": "/assets/img/news/vasa-rigging-shrouds.jpg",
+  "author": "Jules Verne Times Two",
+  "license": "CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Shrouds_on_the_Vasa_ship,_Vasa_Museum,_Stockholm,_Sweden_julesvernex2.jpg"
+ },
+ "batavia-replica-lelystad": {
+  "src": "/assets/img/news/batavia-replica-lelystad.jpg",
+  "author": "Txllxt TxllxT",
+  "license": "CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Lelystad_-_Houtribdijk_-_View_ESE_towards_VOC_Replica_%27Batavia%27.jpg"
+ },
+ "christian-radich-tall-ship": {
+  "src": "/assets/img/news/christian-radich-tall-ship.jpg",
+  "author": "Raphodon",
+  "license": "CC BY-SA 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Sailing_ship_Christian_Radich.jpg"
+ },
+ "wooden-ship-model-ida-katarina": {
+  "src": "/assets/img/news/wooden-ship-model-ida-katarina.jpg",
+  "author": "Länsmuseet Gävleborg",
+  "license": "CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Wooden_ship_model_%22Ida-Katarina%22.jpg"
+ },
+ "egyptian-wooden-ship-model": {
+  "src": "/assets/img/news/egyptian-wooden-ship-model.jpg",
+  "author": "BrokenSphere",
+  "license": "CC BY-SA 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Wooden_trading_ship_model_REM.JPG"
+ },
+ "ha-long-junk": {
+  "src": "/assets/img/news/ha-long-junk.jpg",
+  "author": "Thomas Schoch",
+  "license": "CC BY-SA 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Junk_Halong_Bay_Vietnam.jpg"
+ },
+ "american-queen-steamboat": {
+  "src": "/assets/img/news/american-queen-steamboat.jpg",
+  "author": "Ricky Idlett",
+  "license": "CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:American_Queen_Steamboat_at_Natchez_Under_the_Hill.jpg"
+ },
+ "mississippi-steamboat-1828": {
+  "src": "/assets/img/news/mississippi-steamboat-1828.jpg",
+  "author": "Lesueur",
+  "license": "Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:Mississippi_River_Steamboat_%E2%80%94_1828_%E2%80%94_Lesueur.jpg"
+ },
+ "cruise-ship-vision-of-the-seas": {
+  "src": "/assets/img/news/cruise-ship-vision-of-the-seas.jpg",
+  "author": "Matthew T Rader",
+  "license": "CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Vision_of_The_Seas_cruise_ship_by_Royal_Caribbean_International,_in_Alaska.jpg"
+ },
+ "container-ship": {
+  "src": "/assets/img/news/container-ship.jpg",
+  "author": "Muhammad Mahdi Karim",
+  "license": "GFDL 1.2",
+  "page": "https://commons.wikimedia.org/wiki/File:Container_Ship.jpg"
+ },
+ "woodworking-chisels": {
+  "src": "/assets/img/news/woodworking-chisels.jpg",
+  "author": "Aiko, Thomas &amp; Juliette+Isaac",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Selection_of_woodworking_chisels.jpg"
+ }
+}

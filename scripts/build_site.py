@@ -153,8 +153,8 @@ def header(prefix, active_href=None):
         </div>
 
         <div class="header-col logo">
-          <a href="{prefix}index.html" rel="home" title="Xưởng Sản Xuất Thuyền Mỹ Nghệ Hoa Tay Việt">
-            <img src="{logo}" width="200" height="100" alt="Xưởng Sản Xuất Thuyền Mỹ Nghệ Hoa Tay Việt">
+          <a href="{prefix}index.html" rel="home" title="Xưởng Sản Xuất Thuyền Mỹ Nghệ Vietnam Wooden Ships">
+            <img src="{logo}" width="200" height="100" alt="Xưởng Sản Xuất Thuyền Mỹ Nghệ Vietnam Wooden Ships">
           </a>
         </div>
 
@@ -266,7 +266,7 @@ def footer(prefix):
         <h3 class="widget-title">Google Map</h3>
         <div class="is-divider"></div>
         <div class="textwidget">
-          <iframe class="footer-map" title="Bản đồ Hoa Tay Việt" loading="lazy"
+          <iframe class="footer-map" title="Bản đồ Vietnam Wooden Ships" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade" allowfullscreen
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.626500441101!2d107.03891671474814!3d10.686071692382871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31751a77768c1d45%3A0xcb63f98a4ce9af9a!2zSzYwIOG6pHAgMSwgVMOibiBIaeG7h3AsIExvbmcgVGjDoG5oLCDEkOG7k25nIE5haSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2sus!4v1669172546397!5m2!1svi!2sus"></iframe>
         </div>
@@ -276,7 +276,7 @@ def footer(prefix):
         <h3 class="widget-title">Giới thiệu</h3>
         <div class="is-divider"></div>
         <div class="textwidget">
-          <p class="muted">Chào mừng quý khách đến với đại gia đình HOA TAY VIỆT.</p>
+          <p class="muted">Chào mừng quý khách đến với đại gia đình VIETNAM WOODEN SHIPS.</p>
           <p><span>Công ty chúng tôi chuyên xuất khẩu ngành hàng thủ công mỹ nghệ có bề dày kinh nghiệm trong ngành thủ công làm bằng tay</span></p>
         </div>
       </div>
@@ -373,7 +373,7 @@ def card(slug, name=None, image=None, hover=None, prefix=''):
 # --------------------------------------------------------------------------
 HERO_SLIDES = [
     ('2022/11/z3487042728597_daf745f2e9f46dcaf6295ec7df19df7d-768x579-1.jpg', 'Mô hình tàu Caledonian MacBrayne'),
-    ('2022/11/z3150831024697_8d7e0c59a1b1af27a544a517bb227612.jpg',           'Mô hình du thuyền Hoa Tay Việt'),
+    ('2022/11/z3150831024697_8d7e0c59a1b1af27a544a517bb227612.jpg',           'Mô hình du thuyền Vietnam Wooden Ships'),
     ('2022/11/366219_n-768x613-1.gif',                                        'Mô hình thuyền buồm thủ công'),
     ('2022/11/VV3.gif',                                                       'Xưởng sản xuất thuyền mỹ nghệ'),
 ]
@@ -437,9 +437,9 @@ def build_home():
 </section>'''.format(th=title_href, title=e(title),
                      links=''.join(links), cards=''.join(cards)))
 
-    return page('Trang Chủ - Xưởng Sản Xuất Thuyền Mỹ Nghệ Hoa Tay Việt',
+    return page('Trang Chủ - Xưởng Sản Xuất Thuyền Mỹ Nghệ Vietnam Wooden Ships',
                 'is-home', '\n'.join(blocks), '',
-                desc='Xưởng sản xuất thuyền mỹ nghệ Hoa Tay Việt — mô hình tàu, du thuyền, thuyền buồm và nội thất gỗ thủ công.',
+                desc='Xưởng sản xuất thuyền mỹ nghệ Vietnam Wooden Ships — mô hình tàu, du thuyền, thuyền buồm và nội thất gỗ thủ công.',
                 active='index.html')
 
 
@@ -473,8 +473,8 @@ def build_category(slug, name):
   </section>
 </div>'''.format(p=prefix, name=e(name), count=len(items), cards=cards, body=body)
 
-    return page('%s - Hoa Tay Việt' % name, 'is-category', content, prefix,
-                desc='Danh mục %s tại Hoa Tay Việt.' % name, active='san-pham.html')
+    return page('%s - Vietnam Wooden Ships' % name, 'is-category', content, prefix,
+                desc='Danh mục %s tại Vietnam Wooden Ships.' % name, active='san-pham.html')
 
 
 def build_product(p):
@@ -558,7 +558,7 @@ def build_product(p):
                  thumb=img_path(p['thumb'] or main), ptext=e(p['price'] or 'Liên hệ'),
                  pnum=price_num(p['price']) or '')
 
-    return page('%s - Hoa Tay Việt' % p['name'], 'is-product', content, prefix,
+    return page('%s - Vietnam Wooden Ships' % p['name'], 'is-product', content, prefix,
                 desc='%s — %s. %s' % (p['name'], cat_name, p['size'] or ''),
                 active='san-pham.html')
 
@@ -584,8 +584,8 @@ def build_all_products():
     content = ('<div class="page-wrap"><div class="container"><nav class="breadcrumb">'
                '<a href="index.html">Trang chủ</a><span>/</span>Sản phẩm</nav></div>'
                + '\n'.join(blocks) + '</div>')
-    return page('Sản phẩm - Hoa Tay Việt', 'is-shop', content, prefix,
-                desc='Toàn bộ %d sản phẩm của Hoa Tay Việt.' % len(PRODUCTS),
+    return page('Sản phẩm - Vietnam Wooden Ships', 'is-shop', content, prefix,
+                desc='Toàn bộ %d sản phẩm của Vietnam Wooden Ships.' % len(PRODUCTS),
                 active='san-pham.html')
 
 
@@ -636,7 +636,7 @@ def build_search():
   });
 })();
 </script>'''
-    return page('Tìm kiếm - Hoa Tay Việt', 'is-search', content, '', active='san-pham.html')
+    return page('Tìm kiếm - Vietnam Wooden Ships', 'is-search', content, '', active='san-pham.html')
 
 
 def build_about_body():
@@ -646,7 +646,7 @@ def build_about_body():
   <section class="about-lead">
     <p class="about-kicker">Xưởng sản xuất thuyền mỹ nghệ</p>
     <p class="about-big">Mỗi con thuyền là một tác phẩm làm bằng tay.</p>
-    <p>Hoa Tay Việt là xưởng sản xuất thuyền mỹ nghệ, chuyên xuất khẩu ngành hàng thủ công mỹ nghệ
+    <p>Vietnam Wooden Ships là xưởng sản xuất thuyền mỹ nghệ, chuyên xuất khẩu ngành hàng thủ công mỹ nghệ
 với bề dày kinh nghiệm trong ngành thủ công làm bằng tay.</p>
     <p>Sản phẩm gồm mô hình tàu du lịch, du thuyền, tàu chở hàng, thuyền buồm, thuyền dùng đi dạo và nội thất gỗ.</p>
   </section>
@@ -673,7 +673,7 @@ với bề dày kinh nghiệm trong ngành thủ công làm bằng tay.</p>
   <section class="about-section">
     <h2>Danh mục sản phẩm</h2>
     <div class="is-divider" style="margin-left:0"></div>
-    <p>Khám phá các dòng sản phẩm của Hoa Tay Việt:</p>
+    <p>Khám phá các dòng sản phẩm của Vietnam Wooden Ships:</p>
     <ul class="about-cats">%s</ul>
     <p><a class="btn-cart" href="san-pham.html">Xem tất cả sản phẩm</a></p>
   </section>
@@ -681,7 +681,7 @@ với bề dày kinh nghiệm trong ngành thủ công làm bằng tay.</p>
   <section class="about-section about-contact">
     <h2>Liên hệ với chúng tôi</h2>
     <div class="is-divider" style="margin-left:0"></div>
-    <p>Chào mừng quý khách đến với đại gia đình HOA TAY VIỆT. Hãy liên hệ để được tư vấn và báo giá.</p>
+    <p>Chào mừng quý khách đến với đại gia đình VIETNAM WOODEN SHIPS. Hãy liên hệ để được tư vấn và báo giá.</p>
     <p><strong>CÔNG TY TNHH HOA TAY VIỆT</strong></p>
     <p>Địa chỉ: 199 ấp 1B, Phước Thái, Long Thành, Đồng Nai</p>
     <p>Điện thoại: <a href="tel:0908062685">0908 062 685</a></p>
@@ -708,9 +708,9 @@ def build_news_body():
          'Các mẫu tàu chở hàng mô hình tái hiện cấu trúc tàu thật, phù hợp cho người yêu thích hàng hải và sưu tầm.',
          'danh-muc/tau-cho-hang/index.html'),
         ('Sản phẩm', 'noi-that', 'Nội thất gỗ thủ công cho ngôi nhà của bạn',
-         'Bên cạnh mô hình thuyền, Hoa Tay Việt còn có các sản phẩm nội thất gỗ làm bằng tay.',
+         'Bên cạnh mô hình thuyền, Vietnam Wooden Ships còn có các sản phẩm nội thất gỗ làm bằng tay.',
          'danh-muc/noi-that/index.html'),
-        ('Hướng dẫn', 'du-thuyen-hien-dai', 'Hướng dẫn mua hàng tại Hoa Tay Việt',
+        ('Hướng dẫn', 'du-thuyen-hien-dai', 'Hướng dẫn mua hàng tại Vietnam Wooden Ships',
          'Các bước chọn sản phẩm, thêm vào giỏ hàng và thanh toán đơn giản, nhanh chóng.',
          'huong-dan-mua-hang.html'),
         ('Hướng dẫn', 'thuyen-dung-di-dao', 'Hướng dẫn sử dụng và bảo quản mô hình',
@@ -728,7 +728,7 @@ def build_news_body():
     </article>''' % (href, thumb(cat), e(title), tag, href, e(title), e(desc), href)
         for tag, cat, title, desc, href in posts)
     return '''<div class="news">
-  <p class="news-intro">Cập nhật các sản phẩm, kiến thức và hướng dẫn hữu ích từ xưởng Hoa Tay Việt.</p>
+  <p class="news-intro">Cập nhật các sản phẩm, kiến thức và hướng dẫn hữu ích từ xưởng Vietnam Wooden Ships.</p>
   <div class="news-grid">%s</div>
   <p class="news-cta">Cần tư vấn thêm? Gọi <a href="tel:0908062685">0908 062 685</a> hoặc <a href="lien-he.html">liên hệ với chúng tôi</a>.</p>
 </div>''' % cards
@@ -776,7 +776,7 @@ def build_contact_body():
   <section class="about-section">
     <h2>Bản đồ</h2>
     <div class="is-divider" style="margin-left:0"></div>
-    <iframe class="footer-map contact-map" title="Bản đồ Hoa Tay Việt" loading="lazy"
+    <iframe class="footer-map contact-map" title="Bản đồ Vietnam Wooden Ships" loading="lazy"
       referrerpolicy="no-referrer-when-downgrade" allowfullscreen
       src="%s"></iframe>
   </section>
@@ -793,7 +793,7 @@ def build_buying_body():
         ('Xác nhận đơn hàng', 'Chúng tôi liên hệ qua điện thoại để xác nhận đơn, báo giá với sản phẩm giá “Liên hệ” và sắp xếp giao hàng.'),
     ])
     return '''<div class="guide">
-  <p class="news-intro">Mua hàng tại Hoa Tay Việt chỉ với vài bước đơn giản.</p>
+  <p class="news-intro">Mua hàng tại Vietnam Wooden Ships chỉ với vài bước đơn giản.</p>
   %s
   <section class="about-section">
     <h2>Phương thức thanh toán</h2>
@@ -818,7 +818,7 @@ def build_usage_body():
     ]
     cards = ''.join('<div class="about-card"><h3>%s</h3><p>%s</p></div>' % (e(h), e(d)) for h, d in tips)
     return '''<div class="guide">
-  <p class="news-intro">Mô hình thuyền của Hoa Tay Việt được làm thủ công từng chi tiết. Vài lưu ý nhỏ dưới đây giúp sản phẩm luôn bền đẹp.</p>
+  <p class="news-intro">Mô hình thuyền của Vietnam Wooden Ships được làm thủ công từng chi tiết. Vài lưu ý nhỏ dưới đây giúp sản phẩm luôn bền đẹp.</p>
   <div class="about-grid">%s</div>
   <p class="news-cta">Có thắc mắc về sản phẩm? Gọi <a href="tel:0908062685">0908 062 685</a> hoặc <a href="lien-he.html">liên hệ với chúng tôi</a>.</p>
 </div>''' % cards
@@ -862,7 +862,7 @@ def build_cart():
   </div>
 </div></div>'''
     content = content.replace('@@BASKET@@', icon('basket'))
-    return page('Giỏ hàng - Hoa Tay Việt', 'is-cart', content, '', active=None)
+    return page('Giỏ hàng - Vietnam Wooden Ships', 'is-cart', content, '', active=None)
 
 
 def build_checkout():
@@ -940,7 +940,7 @@ def build_checkout():
   </section>
 </div></div>''' % (QR_DEMO_URL, bank, QR_DEMO_URL, bank)
     content = content.replace('@@BASKET@@', icon('basket'))
-    return page('Thanh toán - Hoa Tay Việt', 'is-checkout', content, '', active=None)
+    return page('Thanh toán - Vietnam Wooden Ships', 'is-checkout', content, '', active=None)
 
 
 # --------------------------------------------------------------------------
@@ -977,13 +977,13 @@ def main():
     todo = '<p>Nội dung trang này chưa được thu thập (máy chủ gốc đang trả về lỗi 500).</p>'
 
     for title, heading, body, fn in [
-        ('Giới thiệu - Hoa Tay Việt',        'Giới thiệu',          intro,   'gioi-thieu.html'),
-        ('Liên hệ - Hoa Tay Việt',           'Liên hệ',             build_contact_body(), 'lien-he.html'),
-        ('Tin tức - Hoa Tay Việt',           'Tin tức',             build_news_body(),    'tin-tuc.html'),
-        ('Hướng dẫn - Hoa Tay Việt',         'Hướng dẫn',           todo,    'huong-dan.html'),
-        ('Hướng dẫn sử dụng - Hoa Tay Việt', 'Hướng Dẫn Sử Dụng',   build_usage_body(),    'huong-dan-su-dung.html'),
-        ('Hướng dẫn mua hàng - Hoa Tay Việt','Hướng dẫn mua hàng',  build_buying_body(),    'huong-dan-mua-hang.html'),
-        ('Tài khoản - Hoa Tay Việt',         'Đăng nhập',           todo,    'tai-khoan.html'),
+        ('Giới thiệu - Vietnam Wooden Ships',        'Giới thiệu',          intro,   'gioi-thieu.html'),
+        ('Liên hệ - Vietnam Wooden Ships',           'Liên hệ',             build_contact_body(), 'lien-he.html'),
+        ('Tin tức - Vietnam Wooden Ships',           'Tin tức',             build_news_body(),    'tin-tuc.html'),
+        ('Hướng dẫn - Vietnam Wooden Ships',         'Hướng dẫn',           todo,    'huong-dan.html'),
+        ('Hướng dẫn sử dụng - Vietnam Wooden Ships', 'Hướng Dẫn Sử Dụng',   build_usage_body(),    'huong-dan-su-dung.html'),
+        ('Hướng dẫn mua hàng - Vietnam Wooden Ships','Hướng dẫn mua hàng',  build_buying_body(),    'huong-dan-mua-hang.html'),
+        ('Tài khoản - Vietnam Wooden Ships',         'Đăng nhập',           todo,    'tai-khoan.html'),
     ]:
         write(fn, build_stub(title, heading, body, fn)); n += 1
 

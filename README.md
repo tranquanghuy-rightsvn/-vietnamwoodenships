@@ -73,6 +73,16 @@ is safe to re-run after adding pages; `scripts/check_site.py` flags any link
 not in `/slug/` form. Serve over HTTP (root-absolute links do not work from
 `file://`).
 
+## News articles
+
+Articles live as source files in `content/tin-tuc/<slug>.html` (JSON front
+matter + body). `python scripts/build_news.py` renders them to
+`html/tin-tuc/<slug>/index.html` with the site header/footer, table of
+contents, reading time, image sizes, related posts and the Wikimedia Commons
+credit for every web photo (`content/tin-tuc/images.json`), and refreshes the
+cards on `/tin-tuc/`. Run `scripts/seo.py` afterwards (adds BlogPosting +
+FAQPage JSON-LD and the sitemap entries).
+
 ## SEO
 
 `scripts/seo.py` rewrites one `<!-- seo:start --> … <!-- seo:end -->` block in

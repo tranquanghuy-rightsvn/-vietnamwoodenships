@@ -37,28 +37,28 @@ NOINDEX = {
 
 # Descriptions for pages that had none (or only a stub).
 DESC = {
-    "gioi-thieu": "Hoa Tay Việt – xưởng sản xuất thuyền mỹ nghệ tại Long Thành, Đồng Nai, chuyên chế tác thủ công và xuất khẩu mô hình tàu, du thuyền, thuyền buồm và nội thất gỗ.",
-    "about": "Hoa Tay Viet – an art boat workshop in Long Thanh, Dong Nai, Vietnam, handcrafting and exporting ship models, yachts, sailing boats and wooden furniture.",
-    "lien-he": "Liên hệ Hoa Tay Việt để được tư vấn mẫu mã, kích thước và báo giá mô hình thuyền: 199 ấp 1B, Phước Thái, Long Thành, Đồng Nai – 0908 062 685.",
-    "contact": "Contact Hoa Tay Viet for advice on models, sizes and a quote for handmade ship models: 199 Hamlet 1B, Phuoc Thai, Long Thanh, Dong Nai – +84 908 062 685.",
-    "tin-tuc": "Tin tức, kiến thức và hướng dẫn chọn mua, bảo quản mô hình tàu thuyền thủ công từ xưởng Hoa Tay Việt.",
-    "news": "News, tips and guides on choosing and caring for handmade ship models from the Hoa Tay Viet workshop.",
-    "huong-dan-mua-hang": "Hướng dẫn mua hàng tại Hoa Tay Việt: chọn sản phẩm, thêm vào giỏ hàng, kiểm tra giỏ và thanh toán khi nhận hàng hoặc quét mã QR.",
-    "buying-guide": "How to buy at Hoa Tay Viet: choose a product, add it to the cart, review your cart and pay on delivery or by QR code.",
-    "huong-dan-su-dung": "Hướng dẫn sử dụng và bảo quản mô hình thuyền gỗ thủ công Hoa Tay Việt: đặt nơi khô ráo, tránh nắng gắt, vệ sinh và cầm đúng cách.",
-    "user-guide": "How to care for your handmade Hoa Tay Viet wooden boat model: keep it dry, out of strong sun, dust it gently and handle it correctly.",
-    "huong-dan": "Hướng dẫn mua hàng và sử dụng sản phẩm thuyền mỹ nghệ Hoa Tay Việt.",
-    "guide": "Guides for buying and using Hoa Tay Viet art boat products.",
-    "gio-hang": "Giỏ hàng của bạn tại Hoa Tay Việt.",
-    "cart": "Your shopping cart at Hoa Tay Viet.",
-    "thanh-toan": "Thanh toán đơn hàng tại Hoa Tay Việt – thanh toán khi nhận hàng hoặc quét mã QR.",
-    "checkout": "Checkout at Hoa Tay Viet – pay on delivery or by QR code.",
-    "tai-khoan": "Đăng nhập tài khoản Hoa Tay Việt.",
-    "account": "Sign in to your Hoa Tay Viet account.",
-    "tim-kiem": "Tìm kiếm sản phẩm thuyền mỹ nghệ Hoa Tay Việt theo tên, mã sản phẩm hoặc danh mục.",
-    "search": "Search Hoa Tay Viet art boat products by name, product code or category.",
-    "san-pham": "Toàn bộ 32 sản phẩm thủ công của Hoa Tay Việt: mô hình tàu du lịch, du thuyền, tàu chở hàng, thuyền buồm, thuyền đi dạo và nội thất gỗ.",
-    "products": "All 32 handmade products of Hoa Tay Viet: cruise ship and yacht models, cargo ships, sailing boats, leisure boats and wooden furniture.",
+    "gioi-thieu": "Vietnam Wooden Ships – xưởng sản xuất thuyền mỹ nghệ tại Long Thành, Đồng Nai, chuyên chế tác thủ công và xuất khẩu mô hình tàu, du thuyền, thuyền buồm và nội thất gỗ.",
+    "about": "Vietnam Wooden Ships – an art boat workshop in Long Thanh, Dong Nai, Vietnam, handcrafting and exporting ship models, yachts, sailing boats and wooden furniture.",
+    "lien-he": "Liên hệ Vietnam Wooden Ships để được tư vấn mẫu mã, kích thước và báo giá mô hình thuyền: 199 ấp 1B, Phước Thái, Long Thành, Đồng Nai – 0908 062 685.",
+    "contact": "Contact Vietnam Wooden Ships for advice on models, sizes and a quote for handmade ship models: 199 Hamlet 1B, Phuoc Thai, Long Thanh, Dong Nai – +84 908 062 685.",
+    "tin-tuc": "Tin tức, kiến thức và hướng dẫn chọn mua, bảo quản mô hình tàu thuyền thủ công từ xưởng Vietnam Wooden Ships.",
+    "news": "News, tips and guides on choosing and caring for handmade ship models from the Vietnam Wooden Ships workshop.",
+    "huong-dan-mua-hang": "Hướng dẫn mua hàng tại Vietnam Wooden Ships: chọn sản phẩm, thêm vào giỏ hàng, kiểm tra giỏ và thanh toán khi nhận hàng hoặc quét mã QR.",
+    "buying-guide": "How to buy at Vietnam Wooden Ships: choose a product, add it to the cart, review your cart and pay on delivery or by QR code.",
+    "huong-dan-su-dung": "Hướng dẫn sử dụng và bảo quản mô hình thuyền gỗ thủ công Vietnam Wooden Ships: đặt nơi khô ráo, tránh nắng gắt, vệ sinh và cầm đúng cách.",
+    "user-guide": "How to care for your handmade Vietnam Wooden Ships wooden boat model: keep it dry, out of strong sun, dust it gently and handle it correctly.",
+    "huong-dan": "Hướng dẫn mua hàng và sử dụng sản phẩm thuyền mỹ nghệ Vietnam Wooden Ships.",
+    "guide": "Guides for buying and using Vietnam Wooden Ships art boat products.",
+    "gio-hang": "Giỏ hàng của bạn tại Vietnam Wooden Ships.",
+    "cart": "Your shopping cart at Vietnam Wooden Ships.",
+    "thanh-toan": "Thanh toán đơn hàng tại Vietnam Wooden Ships – thanh toán khi nhận hàng hoặc quét mã QR.",
+    "checkout": "Checkout at Vietnam Wooden Ships – pay on delivery or by QR code.",
+    "tai-khoan": "Đăng nhập tài khoản Vietnam Wooden Ships.",
+    "account": "Sign in to your Vietnam Wooden Ships account.",
+    "tim-kiem": "Tìm kiếm sản phẩm thuyền mỹ nghệ Vietnam Wooden Ships theo tên, mã sản phẩm hoặc danh mục.",
+    "search": "Search Vietnam Wooden Ships art boat products by name, product code or category.",
+    "san-pham": "Toàn bộ 32 sản phẩm thủ công của Vietnam Wooden Ships: mô hình tàu du lịch, du thuyền, tàu chở hàng, thuyền buồm, thuyền đi dạo và nội thất gỗ.",
+    "products": "All 32 handmade products of Vietnam Wooden Ships: cruise ship and yacht models, cargo ships, sailing boats, leisure boats and wooden furniture.",
 }
 
 PAGE_TYPE = {
@@ -117,8 +117,7 @@ def org(lang):
     return {
         "@type": "Organization",
         "@id": BASE + "/#organization",
-        "name": "Hoa Tay Việt",
-        "alternateName": "Hoa Tay Viet",
+        "name": "Vietnam Wooden Ships",
         "legalName": "Công ty TNHH Hoa Tay Việt",
         "description": "Xưởng sản xuất thuyền mỹ nghệ" if vi else "Art boat workshop",
         "url": BASE + "/",
@@ -149,7 +148,7 @@ def website(lang, search_page):
         "@type": "WebSite",
         "@id": BASE + "/#website",
         "url": BASE + "/",
-        "name": "Hoa Tay Việt",
+        "name": "Vietnam Wooden Ships",
         "inLanguage": ["vi", "en"],
         "publisher": {"@id": BASE + "/#organization"},
         "potentialAction": {
@@ -182,7 +181,9 @@ def breadcrumb(src, page_rel, canonical):
 
 def item_list(src, page_rel, canonical):
     seen, out = set(), []
-    for h, n in re.findall(r'<p class="product-name"><a href="([^"]+)">(.*?)</a>', src, re.S):
+    found = re.findall(r'<p class="product-name"><a href="([^"]+)">(.*?)</a>', src, re.S)
+    found += re.findall(r'<article class="news-card">.*?<h3><a href="(/tin-tuc/[^"]+)">(.*?)</a></h3>', src, re.S)
+    for h, n in found:
         u = url_of(h, page_rel)
         if u not in seen:
             seen.add(u)
@@ -196,6 +197,54 @@ def item_list(src, page_rel, canonical):
         "itemListElement": [
             {"@type": "ListItem", "position": i + 1, "url": u, "name": n}
             for i, (u, n) in enumerate(out)
+        ],
+    }
+
+
+def article(src, page_rel, canonical, desc, lang, today):
+    """BlogPosting for /tin-tuc/<slug>/ pages built by build_news.py."""
+    meta = lambda p: (re.search(r'<meta property="%s" content="([^"]*)">' % p, src) or [None, None])[1]
+    body = re.search(r'<div class="article-body">(.*?)</div>\s*</article>', src, re.S)
+    body = body.group(1) if body else ""
+    images = []
+    cover = re.search(r'<figure class="article-cover"><img src="([^"]+)"', src)
+    for s in ([cover.group(1)] if cover else []) + re.findall(r'<img[^>]*src="([^"]+)"', body):
+        u = asset_url(s, page_rel)
+        if u not in images:
+            images.append(u)
+    kw = re.search(r'<meta name="keywords" content="([^"]*)">', src)
+    a = {
+        "@type": "BlogPosting",
+        "@id": canonical + "#article",
+        "headline": text(re.search(r"<h1>(.*?)</h1>", src, re.S).group(1)),
+        "description": desc,
+        "image": images,
+        "datePublished": meta("article:published_time") or today,
+        "dateModified": meta("article:modified_time") or meta("article:published_time") or today,
+        "author": {"@type": "Organization", "@id": BASE + "/#organization", "name": "Vietnam Wooden Ships", "url": BASE + "/"},
+        "publisher": {"@id": BASE + "/#organization"},
+        "mainEntityOfPage": {"@id": canonical + "#webpage"},
+        "inLanguage": lang,
+        "wordCount": len(text(body).split()),
+    }
+    if meta("article:section"):
+        a["articleSection"] = H.unescape(meta("article:section"))
+    if kw and kw.group(1):
+        a["keywords"] = H.unescape(kw.group(1))
+    return a, images
+
+
+def faq_page(src, canonical):
+    qa = re.findall(r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", src, re.S)
+    if not qa:
+        return None
+    return {
+        "@type": "FAQPage",
+        "@id": canonical + "#faq",
+        "mainEntity": [
+            {"@type": "Question", "name": text(q),
+             "acceptedAnswer": {"@type": "Answer", "text": text(ans)}}
+            for q, ans in qa
         ],
     }
 
@@ -218,7 +267,7 @@ def product(src, page_rel, canonical, desc, lang):
         "url": canonical,
         "image": images,
         "description": desc,
-        "brand": {"@type": "Brand", "name": "Hoa Tay Việt"},
+        "brand": {"@type": "Brand", "name": "Vietnam Wooden Ships"},
         "manufacturer": {"@id": BASE + "/#organization"},
         "material": "Gỗ" if lang == "vi" else "Wood",
     }
@@ -261,6 +310,7 @@ def process(f, today):
     src = re.sub(r'\n?<meta name="description" content="[^"]*">', "", src)
 
     is_product = r.startswith(("sp/", "product/"))
+    is_article = r.startswith("tin-tuc/") and r != "tin-tuc/index.html"
     is_category = r.startswith(("danh-muc/", "category/"))
     is_home = r in ("index.html", "home/index.html")
     name = clean_path(r).strip("/")          # 'gioi-thieu', 'sp/victory', '' (home)
@@ -268,15 +318,15 @@ def process(f, today):
     vi = lang == "vi"
 
     if is_product:
-        suffix = (" Mô hình thủ công bằng gỗ của xưởng thuyền mỹ nghệ Hoa Tay Việt."
-                  if vi else " Handmade wooden model by the Hoa Tay Viet art boat workshop.")
+        suffix = (" Mô hình thủ công bằng gỗ của xưởng thuyền mỹ nghệ Vietnam Wooden Ships."
+                  if vi else " Handmade wooden model by the Vietnam Wooden Ships art boat workshop.")
         desc = desc.replace(suffix, "")          # idempotent re-runs
         desc = (desc.rstrip(".") + "." + suffix) if desc else suffix.strip()
     if is_category:
         cat_name = title.rsplit(" - ", 1)[0]
-        desc = (f"Danh mục {cat_name} tại Hoa Tay Việt – mô hình thủ công bằng gỗ, chế tác tỉ mỉ từng chi tiết, nhận đặt hàng và xuất khẩu."
+        desc = (f"Danh mục {cat_name} tại Vietnam Wooden Ships – mô hình thủ công bằng gỗ, chế tác tỉ mỉ từng chi tiết, nhận đặt hàng và xuất khẩu."
                 if vi else
-                f"{cat_name} at Hoa Tay Viet – handmade wooden models crafted in fine detail, made to order and exported worldwide.")
+                f"{cat_name} at Vietnam Wooden Ships – handmade wooden models crafted in fine detail, made to order and exported worldwide.")
 
     image = BASE + LOGO
     graph = [org(lang), website(lang, "/tim-kiem/" if vi else "/search/")]
@@ -305,6 +355,16 @@ def process(f, today):
         if images:
             image = images[0]
             page["primaryImageOfPage"] = {"@type": "ImageObject", "url": image}
+    elif is_article:
+        art, images = article(src, r, canonical, desc, lang, today)
+        graph.append(art)
+        page["mainEntity"] = {"@id": art["@id"]}
+        if images:
+            image = images[0]
+            page["primaryImageOfPage"] = {"@type": "ImageObject", "url": image}
+        faq = faq_page(src, canonical)
+        if faq:
+            graph.append(faq)
     elif page_type in ("CollectionPage",) or is_home:
         il = item_list(src, r, canonical)
         if il:
@@ -324,18 +384,21 @@ def process(f, today):
             lines.append(f'<link rel="alternate" hreflang="{hl}" href="{alts[hl]}">')
     lines.append(f'<link rel="alternate" hreflang="x-default" href="{alts.get("vi", canonical)}">')
     lines += [
-        '<meta name="author" content="Hoa Tay Việt">',
+        '<meta name="author" content="Vietnam Wooden Ships">',
         '<meta name="theme-color" content="#446084">',
         '<meta name="format-detection" content="telephone=no">',
-        f'<meta property="og:type" content="{"product" if is_product else "website"}">',
-        f'<meta property="og:site_name" content="{"Hoa Tay Việt" if vi else "Hoa Tay Viet"}">',
+        f'<meta property="og:type" content="{"product" if is_product else "article" if is_article else "website"}">',
+        f'<meta property="og:site_name" content="{"Vietnam Wooden Ships" if vi else "Vietnam Wooden Ships"}">',
         f'<meta property="og:title" content="{e(title)}">',
         f'<meta property="og:description" content="{e(desc)}">',
         f'<meta property="og:url" content="{canonical}">',
         f'<meta property="og:image" content="{image}">',
         f'<meta property="og:image:alt" content="{e(title)}">',
         f'<meta property="og:locale" content="{locale[lang]}">',
-        f'<meta property="og:locale:alternate" content="{locale["en" if vi else "vi"]}">',
+    ]
+    if ("en" if vi else "vi") in alts:
+        lines.append(f'<meta property="og:locale:alternate" content="{locale["en" if vi else "vi"]}">')
+    lines += [
         '<meta name="twitter:card" content="summary_large_image">',
         f'<meta name="twitter:title" content="{e(title)}">',
         f'<meta name="twitter:description" content="{e(desc)}">',
@@ -349,7 +412,7 @@ def process(f, today):
     f.write_text(src, encoding="utf-8")
     return {"loc": canonical, "alts": alts, "noindex": noindex, "images": images,
             "lastmod": datetime.fromtimestamp(f.stat().st_mtime).date().isoformat(),
-            "priority": "1.0" if is_home else "0.8" if (is_category or is_product) else "0.6"}
+            "priority": "1.0" if is_home else "0.8" if (is_category or is_product) else "0.7" if is_article else "0.6"}
 
 
 def sitemap(pages):

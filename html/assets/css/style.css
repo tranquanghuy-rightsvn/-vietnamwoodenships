@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Hoa Tay Việt — clone of hoatayviet.net (homepage)
+   Vietnam Wooden Ships — clone of hoatayviet.net (homepage)
    Vanilla HTML/CSS/JS. All values extracted from the original computed styles.
    ========================================================================== */
 
@@ -1395,3 +1395,61 @@ button.cart-icon { background: none; border: 0; padding: 0; margin: 0; font: inh
 .step-no { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--c-primary); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; }
 .steps h3 { font-size: 16px; margin: 0 0 4px; }
 .steps p { margin: 0; color: var(--c-muted); }
+
+/* ==========================================================================
+   News article (/tin-tuc/<slug>/) — built by scripts/build_news.py
+   ========================================================================== */
+.article-wrap { max-width: 860px; }
+.article-head { margin-bottom: 18px; }
+.article-head .news-tag { display: inline-block; margin-bottom: 10px; }
+.article-head h1 { font-size: 30px; line-height: 1.25; margin: 0 0 10px; color: var(--c-heading); }
+@media (max-width: 549px) { .article-head h1 { font-size: 24px; } }
+.article-meta { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 0; font-size: 14px; color: var(--c-muted); }
+.article-cover { margin: 0 0 24px; }
+.article-cover figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--c-muted); }
+.article-cover figcaption .credit { display: block; margin-top: 2px; font-size: 12px; color: #888; }
+.article-cover figcaption .credit a { color: inherit; }
+.article-cover img { display: block; width: 100%; height: auto; max-height: 520px; object-fit: cover; }
+
+.toc { margin: 0 0 28px; padding: 16px 20px; background: #f6f8fb; border-left: 4px solid var(--c-primary); }
+.toc-title { margin: 0 0 8px; font-weight: 700; font-family: var(--f-head); text-transform: uppercase; letter-spacing: .03em; color: var(--c-heading); }
+.toc ol { margin: 0; padding-left: 20px; }
+.toc li { margin: 4px 0; }
+.toc a { color: var(--c-primary); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+.article-body { font-size: 17px; line-height: 1.75; color: var(--c-text); }
+.article-body > * + * { margin-top: 1em; }
+.article-body p { margin: 0; }
+.article-body .lead { font-size: 19px; line-height: 1.65; color: var(--c-heading); }
+.article-body h2 { margin: 1.9em 0 .6em; font-size: 25px; line-height: 1.3; color: var(--c-heading); scroll-margin-top: 90px; }
+.article-body h3 { margin: 1.5em 0 .4em; font-size: 20px; line-height: 1.35; color: var(--c-heading); scroll-margin-top: 90px; }
+.article-body a { color: var(--c-primary); text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: var(--c-primary-dark); }
+.article-body ul, .article-body ol { margin: 0; padding-left: 24px; }
+.article-body li + li { margin-top: .4em; }
+.article-body blockquote { margin: 1.4em 0; padding: 12px 18px; border-left: 4px solid var(--c-line-soft); color: var(--c-muted); font-style: italic; }
+.article-body figure { margin: 1.6em 0; }
+.article-body figure img { display: block; width: auto; max-width: 100%; height: auto; max-height: 640px; margin: 0 auto; background: #f3f3f3; }
+.article-body figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--c-muted); }
+.article-body figcaption .credit { display: block; margin-top: 2px; font-size: 12px; color: #888; }
+.article-body figcaption .credit a { color: inherit; }
+.article-body .callout { padding: 16px 20px; background: #fff8e1; border-left: 4px solid #f0b400; }
+.article-body .callout > * + * { margin-top: .6em; }
+
+.article-body .article-table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; display: block; overflow-x: auto; }
+@media (min-width: 700px) { .article-body .article-table { display: table; } }
+.article-table th, .article-table td { padding: 10px 12px; border: 1px solid var(--c-line-soft); text-align: left; vertical-align: top; }
+.article-table thead th { background: var(--c-primary-dark); color: #fff; font-weight: 700; }
+.article-table tbody tr:nth-child(even) td { background: #fafafa; }
+
+.article-body .faq { display: grid; gap: 10px; }
+.faq details { border: 1px solid var(--c-line-soft); background: #fff; }
+.faq summary { padding: 12px 16px; cursor: pointer; font-weight: 700; color: var(--c-heading); list-style: none; position: relative; padding-right: 40px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 20px; color: var(--c-primary); }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { margin: 0; padding: 0 16px 14px; }
+
+.related { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--c-line); }
+.related-title { margin: 0 0 18px; font-size: 22px; color: var(--c-heading); }

@@ -1,4 +1,4 @@
-/* Hoa Tay Việt — shopping cart + checkout (client-side demo).
+/* Vietnam Wooden Ships — shopping cart + checkout (client-side demo).
    Cart and orders live in localStorage; nothing is sent to a server. */
 (function () {
   'use strict';
@@ -240,7 +240,7 @@
       e.preventDefault();
       if (!cart.length || !validate()) return;
       var f = form.elements, t = totals();
-      var code = 'HTV' + new Date().toISOString().slice(2, 10).replace(/-/g, '') +
+      var code = 'VWS' + new Date().toISOString().slice(2, 10).replace(/-/g, '') +
                  String(Math.floor(Math.random() * 9000) + 1000);
       var method = f.pay.value;
       var orders = read(ORDER_KEY);

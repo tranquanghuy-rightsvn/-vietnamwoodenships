@@ -1,4 +1,4 @@
-/* Hoa Tay Việt — behaviour layer.
+/* Vietnam Wooden Ships — behaviour layer.
    Mirrors the original Flatsome interactions: sticky header, flickity-style
    hero slider, mega-menu toggle, hover dropdowns, off-canvas menu, back-to-top. */
 (function () {

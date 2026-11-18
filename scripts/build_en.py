@@ -35,8 +35,8 @@ PATTERNS = [
     (r'^Thêm (.+) vào giỏ hàng$', r'Add \1 to cart'),
     (r'^Kết quả cho “(.*)”$', r'Results for “\1”'),
     (r'^Ảnh (\d+)$', r'Image \1'),
-    (r'^Danh mục (.+) tại Hoa Tay Việt\.$', r'Category \1 at Hoa Tay Viet.'),
-    (r'^Toàn bộ (\d+) sản phẩm của Hoa Tay Việt\.$', r'All \1 products of Hoa Tay Viet.'),
+    (r'^Danh mục (.+) tại Vietnam Wooden Ships\.$', r'Category \1 at Vietnam Wooden Ships.'),
+    (r'^Toàn bộ (\d+) sản phẩm của Vietnam Wooden Ships\.$', r'All \1 products of Vietnam Wooden Ships.'),
     (r'^Gọi ngay (.+)$', r'Call \1 now'),
     # meta description of a product: "NAME — Category. 80L x 10W (cm)"
     (r'^(.+?) — ([^.]+)\.(.*)$', r'\1 — \2.\3'),
@@ -69,12 +69,12 @@ def tr(raw):
         if m:
             return rx.sub(lambda mm: re.sub(r'\\(\d)', lambda g: DICT.get(mm.group(int(g.group(1))),
                           mm.group(int(g.group(1)))), out), s)
-    m = re.match(r'^(.*) - Hoa Tay Việt$', s)
+    m = re.match(r'^(.*) - Vietnam Wooden Ships$', s)
     if m:
-        return (tr(m.group(1)) or m.group(1)) + ' - Hoa Tay Viet'
-    m = re.match(r'^(.*) - Xưởng Sản Xuất Thuyền Mỹ Nghệ Hoa Tay Việt$', s)
+        return (tr(m.group(1)) or m.group(1)) + ' - Vietnam Wooden Ships'
+    m = re.match(r'^(.*) - Xưởng Sản Xuất Thuyền Mỹ Nghệ Vietnam Wooden Ships$', s)
     if m:
-        return (tr(m.group(1)) or m.group(1)) + ' - Hoa Tay Viet Art Boat Workshop'
+        return (tr(m.group(1)) or m.group(1)) + ' - Vietnam Wooden Ships Art Boat Workshop'
     return None
 
 
