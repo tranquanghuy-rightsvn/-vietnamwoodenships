@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Rewrite every internal link in site/*.html to a root-absolute clean URL.
+"""Rewrite every internal link in html/*.html to a root-absolute clean URL.
 
     about.html            -> /about
     index.html            -> /
     sp/foo/index.html     -> /sp/foo
     ../../assets/x.css    -> /assets/x.css
 
-site/ stays local-friendly (relative links, .html) so it opens from disk.
+html/ stays local-friendly (relative links, .html) so it opens from disk.
 This script copies it to dist/ and rewrites the links there; Vercel runs it as
 its buildCommand (see vercel.json) and serves dist/ with cleanUrls: true.
 """
@@ -16,7 +16,7 @@ from pathlib import Path
 from posixpath import normpath, join
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = ROOT / "site"
+SITE = ROOT / "html"
 OUT = ROOT / "dist"
 ATTR = re.compile(r'(\b(?:href|src|action|data-img)=")([^"]*)(")')
 SKIP = ('http:', 'https:', '//', '#', 'mailto:', 'tel:', 'data:', 'javascript:')

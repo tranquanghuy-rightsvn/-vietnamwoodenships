@@ -3,7 +3,7 @@
 import os, re, sys, urllib.parse
 sys.stdout.reconfigure(encoding='utf-8')
 
-ROOT = 'site'
+ROOT = 'html'
 pages, bad_links, bad_assets, ext = [], [], [], set()
 
 for dirpath, _dirs, files in os.walk(ROOT):

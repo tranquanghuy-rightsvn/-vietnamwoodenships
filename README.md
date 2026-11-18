@@ -7,7 +7,7 @@ catalogue. No framework, no build step, no runtime dependencies.
 ## Run it
 
 ```bash
-cd site
+cd html
 python -m http.server 8900
 # http://127.0.0.1:8900/index.html
 ```
@@ -17,7 +17,7 @@ Any static host works — the output is plain files.
 ## Layout
 
 ```
-site/                       the deliverable
+html/                       the deliverable
   index.html                home page (the clone target)
   san-pham.html             all products, grouped by category
   tim-kiem.html             client-side search over products.json
@@ -59,7 +59,23 @@ _mirror/                    local copy of the original, for side-by-side diffing
 ```bash
 python scripts/build_site.py     # regenerate all 50 pages from _raw/products.json
 python scripts/check_site.py     # verify every href/src resolves
+python scripts/seo.py            # meta, canonical, hreflang, OG, JSON-LD, robots.txt, sitemap.xml
 ```
+
+## SEO
+
+`scripts/seo.py` rewrites one `<!-- seo:start --> … <!-- seo:end -->` block in
+the `<head>` of every page in `html/` (idempotent — run it after any edit):
+
+- meta description / robots, canonical, hreflang `vi` / `en` / `x-default`,
+  Open Graph and Twitter card — all absolute clean URLs (`https://vietnamwoodenships.com/sp/victory`)
+- JSON-LD `@graph`: Organization, WebSite (+ SearchAction), the page
+  (WebPage / AboutPage / ContactPage / CollectionPage / ItemPage), BreadcrumbList,
+  Product (product pages, Offer only when a real price exists), ItemList (listings)
+- `html/robots.txt` and `html/sitemap.xml` (hreflang alternates + product images)
+
+Cart, checkout, account, search and the empty guide hub are `noindex, follow`
+and left out of the sitemap. Domain: `SITE_URL=https://… python scripts/seo.py`.
 
 ## Fidelity
 
