@@ -23,7 +23,7 @@ html/                       the deliverable
   tim-kiem/                 client-side search over products.json
   danh-muc/<slug>/          7 category listings
   sp/<slug>/                32 product pages
-  gioi-thieu/ · lien-he/ · huong-dan*/ · gio-hang/ · tai-khoan/
+  gioi-thieu/ · lien-he/ · huong-dan-*/ · gio-hang/ · thanh-toan/ · tin-tuc/
   home/ · cart/ · about/ · …   English twin of every page above
   category/<slug>/ · product/<slug>/       English twins of danh-muc/ and sp/
   assets/
@@ -83,6 +83,20 @@ credit for every web photo (`content/tin-tuc/images.json`), and refreshes the
 cards on `/tin-tuc/`. Run `scripts/seo.py` afterwards (adds BlogPosting +
 FAQPage JSON-LD and the sitemap entries).
 
+## Product introductions
+
+Each product has a ~500-word introduction (Vietnamese + English), researched
+from public sources and written fresh: `content/products/<vi-slug>.vi.html` /
+`.en.html` (front matter: meta description + the source URLs used).
+`python scripts/build_product_desc.py` inserts them into `html/sp/…` and
+`html/product/…` as a full-width "Giới thiệu sản phẩm" / "About this product"
+section; `scripts/seo.py` then uses the per-product meta description.
+
+## 404
+
+`html/404.html` (site header/footer, search, category + article links,
+noindex). Vercel serves it automatically for unknown URLs; `seo.py` skips it.
+
 ## SEO
 
 `scripts/seo.py` rewrites one `<!-- seo:start --> … <!-- seo:end -->` block in
@@ -95,7 +109,7 @@ the `<head>` of every page in `html/` (idempotent — run it after any edit):
   Product (product pages, Offer only when a real price exists), ItemList (listings)
 - `html/robots.txt` and `html/sitemap.xml` (hreflang alternates + product images)
 
-Cart, checkout, account, search and the empty guide hub are `noindex, follow`
+Cart, checkout and search are `noindex, follow`
 and left out of the sitemap. Domain: `SITE_URL=https://… python scripts/seo.py`.
 
 ## Fidelity

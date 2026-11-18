@@ -31,8 +31,7 @@ LOGO = "/assets/img/2023/06/logo.jpg"
 # noindex,follow and left out of the sitemap.
 NOINDEX = {
     "gio-hang", "cart", "thanh-toan", "checkout",
-    "tai-khoan", "account", "tim-kiem", "search",
-    "huong-dan", "guide",
+    "tim-kiem", "search",
 }
 
 # Descriptions for pages that had none (or only a stub).
@@ -47,14 +46,10 @@ DESC = {
     "buying-guide": "How to buy at Vietnam Wooden Ships: choose a product, add it to the cart, review your cart and pay on delivery or by QR code.",
     "huong-dan-su-dung": "Hướng dẫn sử dụng và bảo quản mô hình thuyền gỗ thủ công Vietnam Wooden Ships: đặt nơi khô ráo, tránh nắng gắt, vệ sinh và cầm đúng cách.",
     "user-guide": "How to care for your handmade Vietnam Wooden Ships wooden boat model: keep it dry, out of strong sun, dust it gently and handle it correctly.",
-    "huong-dan": "Hướng dẫn mua hàng và sử dụng sản phẩm thuyền mỹ nghệ Vietnam Wooden Ships.",
-    "guide": "Guides for buying and using Vietnam Wooden Ships art boat products.",
     "gio-hang": "Giỏ hàng của bạn tại Vietnam Wooden Ships.",
     "cart": "Your shopping cart at Vietnam Wooden Ships.",
     "thanh-toan": "Thanh toán đơn hàng tại Vietnam Wooden Ships – thanh toán khi nhận hàng hoặc quét mã QR.",
     "checkout": "Checkout at Vietnam Wooden Ships – pay on delivery or by QR code.",
-    "tai-khoan": "Đăng nhập tài khoản Vietnam Wooden Ships.",
-    "account": "Sign in to your Vietnam Wooden Ships account.",
     "tim-kiem": "Tìm kiếm sản phẩm thuyền mỹ nghệ Vietnam Wooden Ships theo tên, mã sản phẩm hoặc danh mục.",
     "search": "Search Vietnam Wooden Ships art boat products by name, product code or category.",
     "san-pham": "Toàn bộ 32 sản phẩm thủ công của Vietnam Wooden Ships: mô hình tàu du lịch, du thuyền, tàu chở hàng, thuyền buồm, thuyền đi dạo và nội thất gỗ.",
@@ -317,7 +312,10 @@ def process(f, today):
     noindex = name in NOINDEX
     vi = lang == "vi"
 
-    if is_product:
+    about = re.search(r'<section class="product-about" data-meta="([^"]+)"', src) if is_product else None
+    if about:
+        desc = H.unescape(about.group(1))      # written per product (build_product_desc.py)
+    elif is_product:
         suffix = (" Mô hình thủ công bằng gỗ của xưởng thuyền mỹ nghệ Vietnam Wooden Ships."
                   if vi else " Handmade wooden model by the Vietnam Wooden Ships art boat workshop.")
         desc = desc.replace(suffix, "")          # idempotent re-runs
@@ -440,7 +438,7 @@ def sitemap(pages):
 
 def main():
     today = date.today().isoformat()
-    pages = [process(f, today) for f in sorted(SITE.rglob("*.html"))]
+    pages = [process(f, today) for f in sorted(SITE.rglob("*.html")) if f.name != "404.html"]
     (SITE / "sitemap.xml").write_text(sitemap(pages), encoding="utf-8")
     robots = ["User-agent: *", "Allow: /"]
     # Cart/checkout/account/search are noindex; block crawling of search query URLs only,
