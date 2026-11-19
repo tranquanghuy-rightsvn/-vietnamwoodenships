@@ -163,6 +163,15 @@ VIII. Kiến trúc lưu trữ:
    - Độ trễ từ lúc Lưu tới lúc thấy trên site: ~1–2 phút (Actions build + Cloudflare deploy).
 
 IX. Bug đã gặp ở dự án này (cập nhật dần):
+   - MẤT TOÀN BỘ NỘI DUNG + ẢNH khi soạn (19/11/2026, khách báo "vài giây là mất"): mốc hoàn tác
+     đầu tiên của TinyMCE là ô RỖNG lúc khởi tạo, ô soạn lại dùng chung giữa các lần mở bài -> 1 lần
+     Ctrl+Z / nút Hoàn tác (hoặc lịch sử hoàn tác của bài trước) là xoá sạch. Mẫu adzo cũng dính.
+     Vá: mọi lần nạp bài đi qua loadEditor_() (setContent + undoManager.clear() + add()); điền bản
+     dịch qua replaceEditorContent_() (1 bước hoàn tác được).
+   - Ảnh bị nuốt/xoá khi gõ quanh ảnh: Backspace ở đầu dòng dưới ảnh (kể cả Backspace bộ gõ tiếng
+     Việt tự gửi) nhập dòng vào khối ảnh rồi xoá ảnh; gõ khi đang chọn ảnh -> chữ thay ảnh; bấm cạnh
+     ảnh rồi gõ -> chữ chui vào khối ảnh. Vá: guardFigureKeys_() - ảnh CHỈ bị xoá khi chọn ảnh rồi
+     bấm Delete/Backspace; gõ chữ quanh ảnh tự xuống dòng dưới ảnh. Đã test bằng phím thật.
    - Đặt con trỏ ngay sau ảnh (hoặc trong caption) rồi Enter -> ảnh biến mất + lỗi "Script error."
      (thật ra TinyMCE ném "The new child element contains the parent": nó không có xử lý cho
      <figure> thường - mẫu adzo cũng dính). Vá: bắt phím Enter trong setup (js.html, trước bộ xử
