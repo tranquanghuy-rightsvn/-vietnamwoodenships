@@ -132,10 +132,14 @@ V-b. Quy tắc dịch (nút "🌐 Dịch sang English" của sản phẩm + tin 
 
 VI. Form công khai: KHÔNG áp dụng cho dự án này (mục 0).
 
-VII. UX chung (mặc định playbook, gas-backend-patterns.md mục 9/16/17/18):
+VII. UX chung (mặc định playbook, gas-backend-patterns.md mục 9/16/17/17b/18):
    - Modal XÁC NHẬN (Huỷ/Xoá) và modal THÔNG BÁO (1 nút Đóng, không tự ẩn); sau mọi lưu/xoá thành
      công nhắc "Cần khoảng 1–2 phút để website cập nhật".
    - Mọi nút async: disable + spinner, tự phục hồi khi lỗi.
+   - Mở sản phẩm/bài viết để sửa (cả tạo mới): loading GIỮA MÀN HÌNH (`#page-loading`, phủ mờ chặn
+     thao tác) tới khi nội dung VI + EN đã nạp xong vào 2 ô soạn — không chỉ tới lúc server trả về
+     (`loadingUntil_` trong js.html; bộ đếm tránh bài mở trước tắt loading của bài mở sau). Lỗi
+     tải → tắt loading, hiện modal lỗi, quay về danh sách. (Yêu cầu khách 19/11/2026.)
    - Lưu/Xoá xong: quay về danh sách của đúng mục đó, danh sách tự cập nhật (đồng bộ boot cache).
    - Đổi tab chỉ là hiệu ứng giao diện. Lần đầu: 1 lượt `boot(token)`; lần sau: hiện từ cache rồi
      làm mới ngầm. Key localStorage (trừ token) mang `CLIENT_BUILD` (server tự băm từ app.html +
