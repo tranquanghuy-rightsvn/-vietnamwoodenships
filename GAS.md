@@ -163,6 +163,13 @@ VIII. Kiến trúc lưu trữ:
    - Độ trễ từ lúc Lưu tới lúc thấy trên site: ~1–2 phút (Actions build + Cloudflare deploy).
 
 IX. Bug đã gặp ở dự án này (cập nhật dần):
+   - Đặt con trỏ ngay sau ảnh (hoặc trong caption) rồi Enter -> ảnh biến mất + lỗi "Script error."
+     (thật ra TinyMCE ném "The new child element contains the parent": nó không có xử lý cho
+     <figure> thường - mẫu adzo cũng dính). Vá: bắt phím Enter trong setup (js.html, trước bộ xử
+     lý của TinyMCE) - con trỏ trong figure thì tạo <p> mới ngay dưới ảnh (đứng trước ảnh thì ngay
+     trên) và đưa con trỏ vào đó. Đã test thật: sau ảnh / trong caption / trước ảnh - không lỗi.
+   - Phần giới thiệu chỉ có ảnh (không chữ) từng bị build ẩn mất -> build chỉ ẩn mục "Giới thiệu
+     sản phẩm" khi KHÔNG có cả chữ lẫn ảnh; luôn bỏ các dòng trống <p>&nbsp;</p>.
    - Bản CMS đầu tiên (19/11/2026) viết tay lệch khỏi dự án mẫu -> trình soạn thảo lỗi "Script error.",
      chèn ảnh báo "node cannot be null" (tự bọc ảnh vào figure ngay trong NodeChange + bật
      paste_data_images), form chia 2 cột khó dùng. Đã ĐẬP ĐI LÀM LẠI toàn bộ gas/ bám sát khung

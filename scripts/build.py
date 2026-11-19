@@ -276,8 +276,8 @@ def product_page(p, lang, tpl, related):
             f'<div style="margin-top:16px">' + "".join(f"<p>{e(l)}</p>" for l in lines) + "</div></div>") if lines else ""
 
     intro = drop_empty_paragraphs(p.get("introVi" if lang == "vi" else "introEn") or "")
-    if not has_text(intro):
-        intro = ""   # only blank lines / a lone image: no "Giới thiệu sản phẩm" section at all
+    if not has_text(intro) and "<img" not in intro:
+        intro = ""   # only blank lines: no "Giới thiệu sản phẩm" section at all (an image alone still shows)
     if intro:
         intro = fix_images(intro, {}, lang)
     meta = (p.get("metaVi" if lang == "vi" else "metaEn") or "").strip() or (first_sentence(intro) if intro else "")
