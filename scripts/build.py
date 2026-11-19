@@ -275,7 +275,9 @@ def product_page(p, lang, tpl, related):
     desc = (f'<div class="product-desc"><h2 class="section-title" style="display:inline-block">{T["desc"]}</h2>'
             f'<div style="margin-top:16px">' + "".join(f"<p>{e(l)}</p>" for l in lines) + "</div></div>") if lines else ""
 
-    intro = (p.get("introVi" if lang == "vi" else "introEn") or "").strip()
+    intro = drop_empty_paragraphs(p.get("introVi" if lang == "vi" else "introEn") or "")
+    if not has_text(intro):
+        intro = ""   # only blank lines / a lone image: no "Giới thiệu sản phẩm" section at all
     if intro:
         intro = fix_images(intro, {}, lang)
     meta = (p.get("metaVi" if lang == "vi" else "metaEn") or "").strip() or (first_sentence(intro) if intro else "")
@@ -423,6 +425,18 @@ def heading_ids(body):
     return re.sub(r"<h2(\b[^>]*)>(.*?)</h2>", add, body, flags=re.S)
 
 
+EMPTY_P = re.compile(r"<p>(?:\s|&nbsp;|&#160;|\u00a0|<br\s*/?>)*</p>\s*", re.I)
+
+
+def drop_empty_paragraphs(html):
+    """TinyMCE leaves <p>&nbsp;</p> for every blank line typed in the CMS - never publish them."""
+    return EMPTY_P.sub("", html or "").strip()
+
+
+def has_text(html):
+    return bool(re.sub(r"(?:&nbsp;|&#160;|\s)+", "", re.sub(r"<[^>]+>", "", html or "")))
+
+
 def fix_images(body, credits, lang):
     def img(m):
         tag = m.group(0)
@@ -506,7 +520,7 @@ def page_title(title):
 def news_page(a, lang, tpl, related, credits):
     T = L[lang]
     title = news_title(a, lang)
-    body = fix_images(heading_ids((a.get("contentVi" if lang == "vi" else "contentEn") or "").strip()), credits, lang)
+    body = fix_images(heading_ids(drop_empty_paragraphs(a.get("contentVi" if lang == "vi" else "contentEn") or "")), credits, lang)
     cover = a.get("cover", "")
     cover_caption = ""
     for fig in re.findall(r"<figure\b.*?</figure>", body, flags=re.S):
