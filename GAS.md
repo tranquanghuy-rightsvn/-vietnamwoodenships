@@ -31,6 +31,12 @@ I. Đăng nhập (giống mặc định playbook, gas-backend-patterns.md mục 
      Token phiên sống 30 ngày, lưu localStorage; `verifyOtp` dọn token hết hạn
      (`purgeExpiredTokens_`), Đăng xuất thu hồi token ở server (`logout`).
   6. Server luôn tự `requireRole_` ở MỌI hàm.
+  7. Email OTP (chốt 19/11/2026 — khách lớn tuổi khó chép mã): email HTML, mã ở ĐẦU tiêu đề (điện
+     thoại gợi ý tự điền), mã to trong ô riêng (chạm 1 lần chọn hết) + nút "Đăng nhập ngay" mở
+     `/admin/?e=<email>&c=<mã>`. Email không chạy được JavaScript nên KHÔNG có nút "chép" thật sự.
+     Link chỉ ĐIỀN SẴN form (doGet lọc email hợp lệ + đúng 6 số), người dùng vẫn bấm "Đăng nhập" —
+     cố ý không tự đăng nhập: trình quét thư (Outlook Safe Links...) tự mở link sẽ làm mất mã.
+     `/admin/` chuyển tiếp query vào khung nhúng rồi xoá khỏi thanh địa chỉ.
 
 II. Sản phẩm — full CRUD, SONG NGỮ:
   1. Luồng nhập: nhập bản Việt trước. Khối English có nút "🌐 Dịch sang English" đặt ngay trước
