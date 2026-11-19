@@ -112,6 +112,17 @@ V. Tin tức — full CRUD, SONG NGỮ (cùng nguyên tắc mục II.1 — nút 
    - Danh sách: `data/news.json` (index, mới nhất lên đầu theo `date`); chi tiết
      `data/news/<slug>.json`.
 
+V-b. Quy tắc dịch (nút "🌐 Dịch sang English" của sản phẩm + tin tức, chốt 19/11/2026):
+   - Dịch máy phần chữ, giữ nguyên cấu trúc HTML/ảnh; dịch cả `alt`/`title` của ảnh và caption.
+   - Link nội bộ trong bản dịch tự đổi sang trang tiếng Anh tương ứng (`localizeLinksEn_`):
+     /sp/<slug>/ -> /product/<slugEn>/ (chưa có bản Anh -> /products/), /danh-muc/<cat>/ ->
+     /category/<catEn>/, /tin-tuc/<slug>/ -> /news/<slugEn>/ (chưa có -> /news/), trang tĩnh
+     (/lien-he/ -> /contact/, /huong-dan-mua-hang/ -> /buying-guide/...). Link ra ngoài giữ nguyên.
+   - Bỏ `id` tiếng Việt của h2/h3 — build tự sinh id tiếng Anh theo chữ tiêu đề.
+   - Bài/sản phẩm có bản Anh: build tự khai báo canonical riêng từng bản + `hreflang` vi ↔ en trỏ
+     qua lại + `x-default` = bản Việt (Google hiểu là 2 phiên bản của cùng 1 nội dung); nút đổi
+     ngôn ngữ trên header trỏ đúng bài tương ứng. Chỉ khai báo ngôn ngữ CÓ trang thật (không có ja).
+
 VI. Form công khai: KHÔNG áp dụng cho dự án này (mục 0).
 
 VII. UX chung (mặc định playbook, gas-backend-patterns.md mục 9/16/17/18):
