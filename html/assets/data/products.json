@@ -350,5 +350,16 @@
   "category": "Sản Phẩm Khác",
   "categorySlug": "san-pham-khac",
   "thumb": "assets/img/2022/11/100_1223SAU-300x300.gif"
+ },
+ {
+  "slug": "sturn",
+  "name": "STURN",
+  "sku": "CH00101",
+  "size": "Kích Thước: 75L x 12W x 25H (cm)",
+  "price": "Liên hệ",
+  "priceNum": null,
+  "category": "Tàu Chở Hàng",
+  "categorySlug": "tau-cho-hang",
+  "thumb": "assets/uploads/sp/sturn/mwng74an272p.jpg"
  }
 ]

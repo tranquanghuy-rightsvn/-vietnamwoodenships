@@ -128,5 +128,9 @@ window.HTY_CATALOG = {
  "tranh-thuyen": {
   "name": "BOAT PAINTING",
   "slug": "boat-painting"
+ },
+ "sturn": {
+  "name": "STURN",
+  "slug": "sturn"
  }
 };
