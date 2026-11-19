@@ -75,7 +75,8 @@ II. Sản phẩm — full CRUD, SONG NGỮ:
      - `updatedAt` (server, ISO).
      - Tên danh mục, giá hiển thị, sản phẩm tương tự (4 SP cùng danh mục), JSON-LD, canonical,
        hreflang — build tự tính.
-     - Thứ tự hiển thị = thứ tự trong `data/products.json` (sản phẩm mới thêm vào CUỐI).
+     - Thứ tự hiển thị = thứ tự trong `data/products.json`; sản phẩm MỚI lên ĐẦU (như mẫu adzo,
+       khách yêu cầu 19/11/2026). Sửa sản phẩm cũ giữ nguyên vị trí.
   4. Danh sách trong Admin: đọc `data/products.json` qua GitHub Contents API trong `boot()`; mở
      sửa mới tải `data/products/<slug>.json`.
   5. Ảnh: nén phía client (canvas) cạnh dài tối đa 1600px, JPEG 0.85 (giữ PNG nếu có trong suốt).

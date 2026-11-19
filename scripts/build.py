@@ -342,7 +342,7 @@ def category_section(cat, items, lang):
 
 
 def home_items(cats, curated, pool, by_slug):
-    new = [p for p in reversed(pool) if p["cat"] in cats and p["slug"] not in HOME_KNOWN]
+    new = [p for p in pool if p["cat"] in cats and p["slug"] not in HOME_KNOWN]   # newest first, like the index
     old = [by_slug[s] for s in curated if s in by_slug]
     return (new + old)[:HOME_LIMIT]
 

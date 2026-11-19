@@ -1,5 +1,17 @@
 [
  {
+  "slug": "sturn",
+  "name": "SATURN",
+  "sku": "CH00101",
+  "size": "Kích Thước: 75L x 12W x 25H (cm)",
+  "price": "Contact us",
+  "priceNum": null,
+  "category": "Cargo Ships",
+  "categorySlug": "cargo-ships",
+  "thumb": "assets/uploads/sp/sturn/mwng74an272p.jpg",
+  "cartSlug": "sturn"
+ },
+ {
   "slug": "lagoon-450-yacht-model",
   "name": "LAGOON 450",
   "sku": "DL015",
@@ -382,17 +394,5 @@
   "categorySlug": "other-products",
   "thumb": "assets/img/2022/11/100_1223SAU-300x300.gif",
   "cartSlug": "tranh-thuyen"
- },
- {
-  "slug": "sturn",
-  "name": "SATURN",
-  "sku": "CH00101",
-  "size": "Kích Thước: 75L x 12W x 25H (cm)",
-  "price": "Contact us",
-  "priceNum": null,
-  "category": "Cargo Ships",
-  "categorySlug": "cargo-ships",
-  "thumb": "assets/uploads/sp/sturn/mwng74an272p.jpg",
-  "cartSlug": "sturn"
  }
 ]
