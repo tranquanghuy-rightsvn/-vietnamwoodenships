@@ -3,8 +3,8 @@
   "slugEn": "sturn",
   "sku": "CH00101",
   "cat": "tau-cho-hang",
-  "nameVi": "STURN",
-  "nameEn": "STURN",
+  "nameVi": "SATURN",
+  "nameEn": "SATURN",
   "size": "Kích Thước: 75L x 12W x 25H (cm)",
   "price": null,
   "priceNoteVi": "",
@@ -21,5 +21,5 @@
   "introVi": "<figure><img title=\"STURN\" src=\"/assets/uploads/sp/sturn/mwngqha9438f.jpg\" alt=\"STURN\"></figure>\n<p>&nbsp;</p>\n<p>&nbsp;</p>",
   "introEn": "<figure><img title=\"STURN\" src=\"/assets/uploads/sp/sturn/mwngfddcdy79.jpg\" alt=\"STURN\"></figure>\n<p>&nbsp;</p>",
   "status": "published",
-  "updatedAt": "2026-11-19T11:25:56Z"
+  "updatedAt": "2026-11-19T11:33:42Z"
 }
