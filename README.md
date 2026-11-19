@@ -57,9 +57,8 @@ _mirror/                    local copy of the original, for side-by-side diffing
 ## Rebuild
 
 ```bash
-python scripts/build_site.py     # regenerate all 50 pages from _raw/products.json
-python scripts/check_site.py     # verify every href/src resolves
-python scripts/seo.py            # meta, canonical, hreflang, OG, JSON-LD, robots.txt, sitemap.xml
+python3 scripts/build.py         # products + news from data/, then seo.py
+python3 scripts/check_site.py    # verify every href/src resolves
 ```
 
 ## URLs
@@ -73,24 +72,46 @@ is safe to re-run after adding pages; `scripts/check_site.py` flags any link
 not in `/slug/` form. Serve over HTTP (root-absolute links do not work from
 `file://`).
 
-## News articles
+## Content pipeline (CMS)
 
-Articles live as source files in `content/tin-tuc/<slug>.html` (JSON front
-matter + body). `python scripts/build_news.py` renders them to
-`html/tin-tuc/<slug>/index.html` with the site header/footer, table of
-contents, reading time, image sizes, related posts and the Wikimedia Commons
-credit for every web photo (`content/tin-tuc/images.json`), and refreshes the
-cards on `/tin-tuc/`. Run `scripts/seo.py` afterwards (adds BlogPosting +
-FAQPage JSON-LD and the sitemap entries).
+Products and news are managed in the admin (Google Apps Script CMS, see `GAS.md`).
+The CMS writes JSON into `data/` through the GitHub API; GitHub Actions renders `html/`.
 
-## Product introductions
+```
+data/products.json            index: slug, slugEn, sku, cat, nameVi, nameEn, size, price,
+                              image, image2, status, updatedAt  (order = display order)
+data/products/<slug>.json     + priceNoteVi/En, metaVi/En, images[], introVi/En
+data/news.json                index: slug, slugEn, tag, titleVi/En, descVi/En, cover, date, status
+data/news/<slug>.json         + contentVi, contentEn
+data/news-images.json         Wikimedia Commons credits for /assets/img/news/* photos
+templates/product-{vi,en}.html  product page design ({{PLACEHOLDERS}})
+templates/news-{vi,en}.html     article page shell ({{MAIN}})
+templates/news-en-empty.html    cards shown on /news/ while no article has an English version
+```
 
-Each product has a ~500-word introduction (Vietnamese + English), researched
-from public sources and written fresh: `content/products/<vi-slug>.vi.html` /
-`.en.html` (front matter: meta description + the source URLs used).
-`python scripts/build_product_desc.py` inserts them into `html/sp/…` and
-`html/product/…` as a full-width "Giới thiệu sản phẩm" / "About this product"
-section; `scripts/seo.py` then uses the per-product meta description.
+`python3 scripts/build.py` (stdlib only, idempotent) renders:
+
+- `/sp/<slug>/` and `/product/<slugEn>/` (English page only when `nameEn` is set);
+- `/tin-tuc/<slug>/` and `/news/<slugEn>/` (only when `titleEn` is set) — table of
+  contents (h2 ids added automatically), reading time, image sizes, photo credits,
+  related articles;
+- the product grids and article cards inside hand-made pages, between
+  `<!-- build:NAME -->` / `<!-- /build:NAME -->` markers: `home1`…`home6` on `/` and
+  `/home/` (curated order in `HOME_SECTIONS`, new products first), `all` on `/san-pham/`
+  and `/products/`, `category` on every `/danh-muc/*/` and `/category/*/`, `news` on
+  `/tin-tuc/` and `/news/`, `latest-news` on `/404.html`. Keep the markers when
+  editing those pages;
+- `html/assets/data/products(-en).json` (search) and `html/assets/js/catalog.js`;
+- deletes pages of removed / hidden products and articles, then runs `scripts/seo.py`.
+
+Hidden (`status: "hidden"`) items keep their data but get no page. Categories are a
+fixed list (`CATEGORIES` in `build.py`, same as the CMS).
+
+CI: `.github/workflows/build.yml` runs the build when `data/products.json` or
+`data/news.json` changes (the CMS always writes those last) and commits `html/`.
+
+`scripts/migrate_to_data.py` did the one-time move from the hand-built pages to
+`data/` + `templates/` (it refuses to run again once `data/products.json` exists).
 
 ## 404
 

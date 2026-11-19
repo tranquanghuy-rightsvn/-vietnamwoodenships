@@ -177,7 +177,7 @@ def breadcrumb(src, page_rel, canonical):
 def item_list(src, page_rel, canonical):
     seen, out = set(), []
     found = re.findall(r'<p class="product-name"><a href="([^"]+)">(.*?)</a>', src, re.S)
-    found += re.findall(r'<article class="news-card">.*?<h3><a href="(/tin-tuc/[^"]+)">(.*?)</a></h3>', src, re.S)
+    found += re.findall(r'<article class="news-card">.*?<h3><a href="(/(?:tin-tuc|news)/[^"]+)">(.*?)</a></h3>', src, re.S)
     for h, n in found:
         u = url_of(h, page_rel)
         if u not in seen:
@@ -197,7 +197,7 @@ def item_list(src, page_rel, canonical):
 
 
 def article(src, page_rel, canonical, desc, lang, today):
-    """BlogPosting for /tin-tuc/<slug>/ pages built by build_news.py."""
+    """BlogPosting for /tin-tuc/<slug>/ and /news/<slug>/ pages built by build.py."""
     meta = lambda p: (re.search(r'<meta property="%s" content="([^"]*)">' % p, src) or [None, None])[1]
     body = re.search(r'<div class="article-body">(.*?)</div>\s*</article>', src, re.S)
     body = body.group(1) if body else ""
@@ -305,7 +305,7 @@ def process(f, today):
     src = re.sub(r'\n?<meta name="description" content="[^"]*">', "", src)
 
     is_product = r.startswith(("sp/", "product/"))
-    is_article = r.startswith("tin-tuc/") and r != "tin-tuc/index.html"
+    is_article = r.startswith(("tin-tuc/", "news/")) and r not in ("tin-tuc/index.html", "news/index.html")
     is_category = r.startswith(("danh-muc/", "category/"))
     is_home = r in ("index.html", "home/index.html")
     name = clean_path(r).strip("/")          # 'gioi-thieu', 'sp/victory', '' (home)
@@ -314,7 +314,7 @@ def process(f, today):
 
     about = re.search(r'<section class="product-about" data-meta="([^"]+)"', src) if is_product else None
     if about:
-        desc = H.unescape(about.group(1))      # written per product (build_product_desc.py)
+        desc = H.unescape(about.group(1))      # written per product (scripts/build.py)
     elif is_product:
         suffix = (" Mô hình thủ công bằng gỗ của xưởng thuyền mỹ nghệ Vietnam Wooden Ships."
                   if vi else " Handmade wooden model by the Vietnam Wooden Ships art boat workshop.")
@@ -438,7 +438,9 @@ def sitemap(pages):
 
 def main():
     today = date.today().isoformat()
-    pages = [process(f, today) for f in sorted(SITE.rglob("*.html")) if f.name != "404.html"]
+    # 404 and the admin embed are not public pages: no SEO block, not in the sitemap.
+    skip = lambda f: f.name == "404.html" or f.relative_to(SITE).parts[0] in ("admin", "vendor")
+    pages = [process(f, today) for f in sorted(SITE.rglob("*.html")) if not skip(f)]
     (SITE / "sitemap.xml").write_text(sitemap(pages), encoding="utf-8")
     robots = ["User-agent: *", "Allow: /"]
     # Cart/checkout/account/search are noindex; block crawling of search query URLs only,

@@ -1,0 +1,45 @@
+name: Build html from data
+
+# Runs only when one of the two index files changes: the CMS always writes them LAST in a
+# save/delete (images and detail JSON first), so building on any earlier commit would deploy
+# a half-finished state. See GAS.md section VIII.
+on:
+  push:
+    branches: [master]
+    paths:
+      - "data/products.json"
+      - "data/news.json"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-html
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build
+        run: python3 scripts/build.py
+
+      - name: Commit html/ if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A html/
+          if git diff --cached --quiet; then
+            echo "No change in html/ - nothing to commit."
+            exit 0
+          fi
+          git commit -m "CI: build html from data"
+          git pull --rebase origin master
+          git push

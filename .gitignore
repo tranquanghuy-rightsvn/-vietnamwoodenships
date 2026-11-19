@@ -13,3 +13,7 @@ _raw/*
 Thumbs.db
 dist/
 __pycache__/
+
+# CMS backend (Google Apps Script) - deploy bằng clasp, KHÔNG qua git. Xem GAS.md.
+gas/
+.clasp.json
