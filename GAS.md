@@ -79,8 +79,10 @@ II. Sản phẩm — full CRUD, SONG NGỮ:
   4. Danh sách trong Admin: đọc `data/products.json` qua GitHub Contents API trong `boot()`; mở
      sửa mới tải `data/products/<slug>.json`.
   5. Ảnh: nén phía client (canvas) cạnh dài tối đa 1600px, JPEG 0.85 (giữ PNG nếu có trong suốt).
-     Upload thẳng GitHub ngay khi chọn (không qua Drive). Ảnh CMS RIÊNG 1-1 theo sản phẩm:
-     `html/assets/uploads/sp/<slug>/NN.jpg` (đánh số tăng dần, không đánh số lại). Ảnh cũ
+     Upload thẳng GitHub ngay khi chọn (không qua Drive). Ảnh CMS RIÊNG 1-1 theo sản phẩm, đặt
+     tên như dự án mẫu adzo: `html/assets/uploads/sp/<slug>/gNN.jpg` (ảnh sản phẩm) và `cNN.jpg`
+     (ảnh trong giới thiệu); tin tức: `html/assets/uploads/tin-tuc/<slug>/cover.jpg` + `cNN.jpg`.
+     Đánh số tăng dần có khoá (tải song song không trùng số), không đánh số lại. Ảnh cũ
      (`/assets/img/...`, có trước CMS) là ảnh DÙNG CHUNG — KHÔNG BAO GIỜ bị xoá qua CMS.
 
 III. Sửa sản phẩm / tin tức:
@@ -153,11 +155,20 @@ VIII. Kiến trúc lưu trữ:
      - `data/news/<slug>.json` — đầy đủ: index + contentVi, contentEn.
      - `html/assets/uploads/sp/<slug>/*`, `html/assets/uploads/tin-tuc/<slug>/*` — ảnh CMS, ghi
        THẲNG vào site.
+   - Mọi commit của CMS có hậu tố `[CI-Skip]` (Cloudflare bỏ qua deploy, chỉ deploy commit build
+     của CI; GitHub Actions vẫn chạy) — như adzo.
    - `data/products.json` / `data/news.json` LUÔN ghi SAU CÙNG — 2 file trigger GitHub Actions
      (`.github/workflows/build.yml`: `python3 scripts/build.py` -> commit `html/`).
    - Độ trễ từ lúc Lưu tới lúc thấy trên site: ~1–2 phút (Actions build + Cloudflare deploy).
 
 IX. Bug đã gặp ở dự án này (cập nhật dần):
+   - Bản CMS đầu tiên (19/11/2026) viết tay lệch khỏi dự án mẫu -> trình soạn thảo lỗi "Script error.",
+     chèn ảnh báo "node cannot be null" (tự bọc ảnh vào figure ngay trong NodeChange + bật
+     paste_data_images), form chia 2 cột khó dùng. Đã ĐẬP ĐI LÀM LẠI toàn bộ gas/ bám sát khung
+     adzo (cùng tên hàm/luồng xử lý), chỉ thêm phần song ngữ theo iconic. Đã chạy thử thật trên
+     Chrome bằng trang test giả lập server: mở bài cũ (giữ đủ hỏi đáp/khung lưu ý/bảng/ảnh), chèn
+     3 ảnh cùng lúc, dịch, lưu, tạo sản phẩm/bài mới, người dùng - không lỗi. QUY TẮC: sửa gas/ thì
+     copy từ mẫu adzo/xevip trước, không tự chế.
    - Deploy version mới xong, URL /exec trả 403 "Truy cập bị từ chối" — code mới dùng thêm dịch
      vụ (bảng tính, mail, gọi API ngoài, dịch) mà chủ script chưa cấp quyền (gotcha #5). Vá: chạy
      hàm `setup()` 1 lần trong trình soạn Apps Script (cấp đủ quyền + tạo bảng Users + báo thiếu
