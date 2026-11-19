@@ -130,7 +130,7 @@ window.HTY_CATALOG = {
   "slug": "boat-painting"
  },
  "sturn": {
-  "name": "STURN",
+  "name": "SATURN",
   "slug": "sturn"
  }
 };
