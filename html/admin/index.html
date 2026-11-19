@@ -92,15 +92,7 @@
     document.getElementById('cms-open-tab').style.display = 'inline-block';
   }, 12000);
 
-  // Link "Đăng nhập ngay" trong email (?e=...&c=...): chuyển tiếp vào khung để điền sẵn form,
-  // rồi xoá khỏi thanh địa chỉ / lịch sử trình duyệt.
-  var qs = location.search;
-  var target = CMS_URL;
-  if (/[?&]c=\d{6}(&|$)/.test(qs)) {
-    target = CMS_URL + qs;
-    try { history.replaceState(null, '', location.pathname); } catch (e) {}
-  }
-  frame.src = target;
+  frame.src = CMS_URL;
 </script>
 </body>
 </html>
