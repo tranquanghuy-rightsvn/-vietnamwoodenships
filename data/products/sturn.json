@@ -1,0 +1,25 @@
+{
+  "slug": "sturn",
+  "slugEn": "sturn",
+  "sku": "CH00101",
+  "cat": "tau-cho-hang",
+  "nameVi": "STURN",
+  "nameEn": "STURN",
+  "size": "Kích Thước: 75L x 12W x 25H (cm)",
+  "price": null,
+  "priceNoteVi": "",
+  "priceNoteEn": "",
+  "metaVi": "Cùng với các tàu chị em của mình, Saturn là một phần của thế hệ phà chở ô tô mới được đóng vào thập niên 1970 để phục vụ các tuyến đường tại Firth of Clyde. Những con tàu",
+  "metaEn": "Together with her sister ships, Saturn formed a new generation of car ferries built in the 1970s to serve the routes on the Firth of Clyde. These ships were nicknamed the",
+  "images": [
+    "/assets/uploads/sp/sturn/mwng74an272p.jpg",
+    "/assets/uploads/sp/sturn/mwng7kvj7rpz.jpg",
+    "/assets/uploads/sp/sturn/mwng7x7rcpm5.jpg",
+    "/assets/uploads/sp/sturn/mwng8a7679vl.jpg",
+    "/assets/uploads/sp/sturn/mwng8wdi94nk.jpg"
+  ],
+  "introVi": "<figure><img title=\"STURN\" src=\"/assets/uploads/sp/sturn/mwng16gk15p9.jpg\" alt=\"STURN\"></figure>\n<p>&nbsp;</p>",
+  "introEn": "<figure><img title=\"STURN\" src=\"/assets/uploads/sp/sturn/mwngfddcdy79.jpg\" alt=\"STURN\"></figure>\n<p>&nbsp;</p>",
+  "status": "published",
+  "updatedAt": "2026-11-19T11:16:24Z"
+}
