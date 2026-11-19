@@ -163,6 +163,15 @@ VIII. Kiến trúc lưu trữ:
    - Độ trễ từ lúc Lưu tới lúc thấy trên site: ~1–2 phút (Actions build + Cloudflare deploy).
 
 IX. Bug đã gặp ở dự án này (cập nhật dần):
+   - NGUYÊN NHÂN GỐC của "vài giây là mất / không đặt chuột vào gõ được" (19/11/2026): trên trang
+     thật (độ trễ server vài giây, nhúng nhiều lớp iframe) khung soạn của TinyMCE - tạo bằng
+     srcdoc trên Chrome - bị trình duyệt NẠP LẠI thành trang trắng vài giây sau khi đã có nội
+     dung: mất hết nội dung + ảnh, khung chết (gõ không ăn). Trang test giả lập (trả lời tức thì)
+     KHÔNG tái hiện được -> PHẢI test trên trang thật: Cmd+Shift+R, mở bài ngay, chờ ~10 giây.
+     Vá 2 lớp (js.html): (1) init_content_sync: true - ghi thẳng khung soạn, không dùng srcdoc;
+     (2) watchEditorFrame_(): khung soạn vẫn bị nạp lại vì lý do khác -> tự dựng lại ô soạn và nạp
+     lại nội dung mới nhất (LAST_HTML, cập nhật mỗi lần gõ). Test trên trang thật: tải lại cứng +
+     mở ngay 3 lần, gõ/xoá/chờ - không mất.
    - MẤT TOÀN BỘ NỘI DUNG + ẢNH khi soạn (19/11/2026, khách báo "vài giây là mất"): mốc hoàn tác
      đầu tiên của TinyMCE là ô RỖNG lúc khởi tạo, ô soạn lại dùng chung giữa các lần mở bài -> 1 lần
      Ctrl+Z / nút Hoàn tác (hoặc lịch sử hoàn tác của bài trước) là xoá sạch. Mẫu adzo cũng dính.
