@@ -1,0 +1,46 @@
+{
+ "siteName": "Vietnam Wooden Ships",
+ "logo": "/assets/img/2023/06/logo.jpg",
+ "logoAltVi": "Xưởng Sản Xuất Thuyền Mỹ Nghệ Vietnam Wooden Ships",
+ "logoAltEn": "Vietnam Wooden Ships Art Boat Workshop",
+ "favicon": "",
+ "companyVi": "CÔNG TY TNHH HOA TAY VIỆT",
+ "companyEn": "HOA TAY VIET CO., LTD",
+ "legalName": "Công ty TNHH Hoa Tay Việt",
+ "addressVi": "199 ấp 1B, Phước Thái, Long Thành, Đồng Nai",
+ "addressEn": "199 Hamlet 1B, Phuoc Thai, Long Thanh, Dong Nai",
+ "phone": "0908 062 685",
+ "phone2": "84 35234 4343",
+ "phone2NoteVi": "Ms Tram",
+ "phone2NoteEn": "Ms Tram",
+ "email": "hoatayviet.modelship@gmail.com",
+ "email2": "lywoodenmodelboat@gmail.com",
+ "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.626500441101!2d107.03891671474814!3d10.686071692382871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31751a77768c1d45%3A0xcb63f98a4ce9af9a!2zSzYwIOG6pHAgMSwgVMOibiBIaeG7h3AsIExvbmcgVGjDoG5oLCDEkOG7k25nIE5haSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2sus!4v1669172546397!5m2!1svi!2sus",
+ "aboutTitleVi": "Chào mừng quý khách đến với đại gia đình VIETNAM WOODEN SHIPS.",
+ "aboutTitleEn": "Welcome to the VIETNAM WOODEN SHIPS family.",
+ "aboutVi": "Công ty chúng tôi chuyên xuất khẩu ngành hàng thủ công mỹ nghệ có bề dày kinh nghiệm trong ngành thủ công làm bằng tay",
+ "aboutEn": "We export handcrafted art and craft goods and have long experience in the handmade craft trade.",
+ "slides": [
+  {
+   "image": "/assets/img/2022/11/z3487042728597_daf745f2e9f46dcaf6295ec7df19df7d-768x579-1.jpg",
+   "captionVi": "Mô hình tàu Caledonian MacBrayne",
+   "captionEn": "Caledonian MacBrayne ship model"
+  },
+  {
+   "image": "/assets/img/2022/11/z3150831024697_8d7e0c59a1b1af27a544a517bb227612.jpg",
+   "captionVi": "Mô hình du thuyền Vietnam Wooden Ships",
+   "captionEn": "Vietnam Wooden Ships yacht model"
+  },
+  {
+   "image": "/assets/img/2022/11/366219_n-768x613-1.gif",
+   "captionVi": "Mô hình thuyền buồm thủ công",
+   "captionEn": "Handmade sailing boat model"
+  },
+  {
+   "image": "/assets/img/2022/11/VV3.gif",
+   "captionVi": "Xưởng sản xuất thuyền mỹ nghệ",
+   "captionEn": "Art boat workshop"
+  }
+ ],
+ "updatedAt": "2026-11-20T00:00:00Z"
+}

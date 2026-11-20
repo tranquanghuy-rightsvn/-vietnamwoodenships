@@ -83,6 +83,8 @@ data/products.json            index: slug, slugEn, sku, cat, nameVi, nameEn, siz
 data/products/<slug>.json     + priceNoteVi/En, metaVi/En, images[], introVi/En
 data/news.json                index: slug, slugEn, tag, titleVi/En, descVi/En, cover, date, status
 data/news/<slug>.json         + contentVi, contentEn
+data/settings.json            general settings (CMS "Cài đặt chung"): logo, favicon, home slider,
+                              company, address, phones, emails, map, footer text
 data/news-images.json         Wikimedia Commons credits for /assets/img/news/* photos
 templates/product-{vi,en}.html  product page design ({{PLACEHOLDERS}})
 templates/news-{vi,en}.html     article page shell ({{MAIN}})
@@ -102,13 +104,18 @@ templates/news-en-empty.html    cards shown on /news/ while no article has an En
   `/tin-tuc/` and `/news/`, `latest-news` on `/404.html`. Keep the markers when
   editing those pages;
 - `html/assets/data/products(-en).json` (search) and `html/assets/js/catalog.js`;
+- the general settings (`data/settings.json`) into every page, between
+  `<!-- set:NAME -->` / `<!-- /set:NAME -->` markers (header top bar, logo, header phone, footer,
+  home slider, contact cards + map, about-page contact) and into `data-set="phone"` /
+  `data-set="email"` links and the favicon `<link>`s. Keep those markers when editing pages;
+  `scripts/add_settings_markers.py` (idempotent) adds them to new pages;
 - deletes pages of removed / hidden products and articles, then runs `scripts/seo.py`.
 
 Hidden (`status: "hidden"`) items keep their data but get no page. Categories are a
 fixed list (`CATEGORIES` in `build.py`, same as the CMS).
 
-CI: `.github/workflows/build.yml` runs the build when `data/products.json` or
-`data/news.json` changes (the CMS always writes those last) and commits `html/`.
+CI: `.github/workflows/build.yml` runs the build when `data/products.json`,
+`data/news.json` or `data/settings.json` changes (the CMS always writes those last) and commits `html/`.
 
 `scripts/migrate_to_data.py` did the one-time move from the hand-built pages to
 `data/` + `templates/` (it refuses to run again once `data/products.json` exists).

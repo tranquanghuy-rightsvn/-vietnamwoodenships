@@ -14,6 +14,8 @@ Idempotent: running it twice in a row changes nothing.
   data/news.json + data/news/<slug>.json (+ data/news-images.json, photo credits)
       -> html/tin-tuc/<slug>/, html/news/<slugEn>/ (when titleEn is set)
       -> article cards on /tin-tuc/ and /news/, "Bài viết mới" on /404.html
+  data/settings.json (CMS "Cài đặt chung": logo, favicon, hero slider, phone, email, address,
+        map, footer text) -> header/footer of every page, home slider, contact/about pages
   then: delete pages of products/articles that no longer exist or are hidden,
         and run scripts/seo.py (meta, canonical, hreflang, JSON-LD, sitemap, robots).
 
@@ -611,6 +613,192 @@ def build_news():
     return {a["slug"] for a in pools["vi"]}, {a["slugEn"] for a in pools["en"]}
 
 
+# ------------------------------------------------------------------ general settings
+# data/settings.json (CMS tab "Cài đặt chung", GAS.md mục V-c) -> every page. Regions between
+# <!-- set:NAME --> and <!-- /set:NAME --> are rewritten (scripts/add_settings_markers.py put
+# them there); links with data-set="phone" / data-set="email" get the main phone / email.
+ICON_PHONE = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.05 15.05 0 0 1-6.59-6.59l2.2-2.2a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z"/></svg>'
+ICON_MAIL = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>'
+ICON_PIN = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>'
+ICON_PREV = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 18.5 8 12l6.5-6.5L15.9 6.9 10.8 12l5.1 5.1z"/></svg>'
+ICON_NEXT = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.5 5.5 16 12l-6.5 6.5L8.1 17.1 13.2 12 8.1 6.9z"/></svg>'
+FAVICON = "/assets/img/2023/06/cropped-logo-32x32.jpg"
+TOUCH_ICON = "/assets/img/2023/06/cropped-logo-180x180.jpg"
+
+SL = {
+    "vi": dict(contact="Thông tin liên hệ", about="Giới thiệu", map="Bản đồ Vietnam Wooden Ships",
+               prev="Ảnh trước", next="Ảnh sau", choose="Chọn ảnh", image="Ảnh {}",
+               workshop="Địa chỉ xưởng", phone="Điện thoại", address="Địa chỉ"),
+    "en": dict(contact="Contact information", about="About us", map="Vietnam Wooden Ships map",
+               prev="Previous image", next="Next image", choose="Choose image", image="Image {}",
+               workshop="Workshop address", phone="Phone", address="Address"),
+}
+
+
+def load_settings():
+    p = DATA / "settings.json"
+    return load(p) if p.exists() else None
+
+
+def tel(phone):
+    """'0908 062 685' -> '0908062685', '+84 908…' -> '+84908…'."""
+    return re.sub(r"[^\d+]", "", phone or "")
+
+
+def tr(st, key, lang):
+    """Bilingual field: keyVi / keyEn, English falls back to Vietnamese."""
+    v = st.get(key + ("En" if lang == "en" else "Vi")) or ""
+    return v or st.get(key + "Vi") or ""
+
+
+def settings_regions(st, lang):
+    t = SL[lang]
+    phone, email = st.get("phone", ""), st.get("email", "")
+    phone2, email2 = st.get("phone2", ""), st.get("email2", "")
+    note2 = tr(st, "phone2Note", lang)
+    company, address = tr(st, "company", lang), tr(st, "address", lang)
+    home = L[lang]["home"]
+    alt = tr(st, "logoAlt", lang) or st.get("siteName", BRAND)
+    out = {}
+
+    li = []
+    if phone:
+        li.append(f'          <li><span class="topbar-text">{ICON_PHONE} {e(phone)}</span></li>')
+    if email:
+        li.append(f'          <li><a href="mailto:{e(email)}">{ICON_MAIL} {e(email)}</a></li>')
+    out["topbar"] = "\n".join(li)
+    out["topbar-m"] = li[0] if phone else ""
+
+    logo = st.get("logo") or "/assets/img/2023/06/logo.jpg"
+    wh = img_size(logo)
+    w, h = (round(wh[0] * 100 / wh[1]), 100) if wh and wh[1] else (200, 100)
+    out["logo"] = (f'          <a href="{home}" rel="home" title="{e(alt)}">\n'
+                   f'            <img src="{e(logo)}" width="{w}" height="{h}" alt="{e(alt)}">\n'
+                   f'          </a>')
+
+    out["header-phone"] = f'<a class="header-phone" href="tel:{tel(phone)}">{ICON_PHONE} {e(phone)}</a>' if phone else ""
+
+    rows = []
+    if company:
+        rows.append(f"<p><strong>{e(company)}</strong></p>")
+    if address:
+        rows.append(f"<p>{ICON_PIN} <span>{e(address)}</span></p>")
+    if phone:
+        rows.append(f'<p>{ICON_PHONE} <a href="tel:{tel(phone)}">{e(phone)}</a></p>')
+    if phone2:
+        rows.append(f"<p>{ICON_PHONE} <span>{e(phone2)}{f' – Contact ({e(note2)})' if note2 else ''}</span></p>")
+    for m in (email, email2):
+        if m:
+            rows.append(f'<p>{ICON_MAIL} <a href="mailto:{e(m)}">{e(m)}</a></p>')
+    widgets = [("contact", "\n".join("          " + r for r in rows))]
+    if st.get("mapEmbed"):
+        widgets.append(("map", f'''          <iframe class="footer-map" title="{t['map']}" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+            src="{e(st['mapEmbed'])}"></iframe>'''))
+    about_rows = []
+    if tr(st, "aboutTitle", lang):
+        about_rows.append(f'          <p class="muted">{e(tr(st, "aboutTitle", lang))}</p>')
+    if tr(st, "about", lang):
+        about_rows.append(f'          <p><span>{e(tr(st, "about", lang))}</span></p>')
+    if about_rows:
+        widgets.append(("about", "\n".join(about_rows)))
+    titles = {"contact": t["contact"], "map": "Google Map", "about": t["about"]}
+    out["footer"] = '    <div class="row">\n\n' + "\n\n".join(
+        f'''      <div class="widget">
+        <h3 class="widget-title">{titles[k]}</h3>
+        <div class="is-divider"></div>
+        <div class="textwidget">
+{body}
+        </div>
+      </div>''' for k, body in widgets) + "\n\n    </div>"
+
+    slides = [s for s in st.get("slides") or [] if s.get("image")]
+    n = len(slides)
+    track = "".join(
+        f'<div class="slide" role="group" aria-roledescription="slide" aria-label="{i + 1} / {n}" '
+        f'aria-hidden="{"false" if i == 0 else "true"}"><div class="slide-bg" '
+        f'style="background-image:url(&quot;{e(s["image"])}&quot;)" role="img" aria-label="{e(tr(s, "caption", lang))}"></div>'
+        f'<div class="slide-overlay"></div>'
+        + (f'<p class="slide-caption">{e(tr(s, "caption", lang))}</p>' if tr(s, "caption", lang) else "")
+        + "</div>" for i, s in enumerate(slides))
+    dots = "".join(
+        f'<button type="button" role="tab" aria-selected="{"true" if i == 0 else "false"}" aria-label="{t["image"].format(i + 1)}"></button>'
+        for i in range(n))
+    out["slider"] = (f'      <div class="slider-track">{track}</div>\n'
+                     + (f'      <button class="slider-arrow prev" type="button" aria-label="{t["prev"]}">{ICON_PREV}</button>\n'
+                        f'      <button class="slider-arrow next" type="button" aria-label="{t["next"]}">{ICON_NEXT}</button>\n'
+                        f'      <div class="slider-dots" role="tablist" aria-label="{t["choose"]}">{dots}</div>'
+                        if n > 1 else "")).rstrip("\n")
+
+    cards = []
+    if address:
+        cards.append(f"      <h3>{t['workshop']}</h3>\n      <p>{e(address)}</p>")
+    ph = ([f'      <p><a href="tel:{tel(phone)}">{e(phone)}</a></p>'] if phone else []) + \
+         ([f"      <p>{e(phone2)}{f' ({e(note2)})' if note2 else ''}</p>"] if phone2 else [])
+    if ph:
+        cards.append(f"      <h3>{t['phone']}</h3>\n" + "\n".join(ph))
+    em = [f'      <p><a href="mailto:{e(m)}">{e(m)}</a></p>' for m in (email, email2) if m]
+    if em:
+        cards.append("      <h3>Email</h3>\n" + "\n".join(em))
+    out["contact"] = '<div class="contact-grid">\n' + "\n".join(
+        f'    <div class="contact-card">\n{c}\n    </div>' for c in cards) + "\n  </div>"
+    out["contact-map"] = (f'''<iframe class="footer-map contact-map" title="{t['map']}" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+      src="{e(st['mapEmbed'])}"></iframe>''' if st.get("mapEmbed") else "")
+
+    ac = []
+    if company:
+        ac.append(f"<p><strong>{e(company)}</strong></p>")
+    if address:
+        ac.append(f"<p>{t['address']}: {e(address)}</p>")
+    if phone:
+        ac.append(f'<p>{t["phone"]}: <a href="tel:{tel(phone)}">{e(phone)}</a></p>')
+    if email:
+        ac.append(f'<p>Email: <a href="mailto:{e(email)}">{e(email)}</a></p>')
+    out["about-contact"] = "\n    ".join(ac)
+    return out
+
+
+SET_RE = re.compile(r"(<!-- set:([\w-]+) -->)(.*?)(<!-- /set:\2 -->)", re.S)
+PHONE_LINK = re.compile(r'<a ((?:class="[^"]*" )?)href="tel:[^"]*" data-set="phone">(.*?)</a>', re.S)
+EMAIL_LINK = re.compile(r'<a ((?:class="[^"]*" )?)href="mailto:[^"]*" data-set="email">(.*?)</a>', re.S)
+ICON_LINK = re.compile(r'<link rel="icon" href="[^"]*"( sizes="[^"]*")?>')
+TOUCH_LINK = re.compile(r'<link rel="apple-touch-icon" href="[^"]*">')
+
+
+def apply_settings_to(s, st, regions):
+    s = SET_RE.sub(lambda m: m.group(1) + regions.get(m.group(2), m.group(3)) + m.group(4), s)
+    phone, email = st.get("phone", ""), st.get("email", "")
+
+    def link(m, href, value, test):
+        # keep button text ("Gọi ngay"); replace text that is the number / address itself
+        inner = e(value) if test(m.group(2)) else m.group(2)
+        return f'<a {m.group(1)}href="{href}" data-set="{"phone" if href.startswith("tel") else "email"}">{inner}</a>'
+    if phone:
+        s = PHONE_LINK.sub(lambda m: link(m, "tel:" + tel(phone), phone, lambda x: re.fullmatch(r"[\d\s+().-]+", x)), s)
+    if email:
+        s = EMAIL_LINK.sub(lambda m: link(m, "mailto:" + e(email), email, lambda x: "@" in x), s)
+    fav = st.get("favicon")
+    s = ICON_LINK.sub(f'<link rel="icon" href="{e(fav)}">' if fav else f'<link rel="icon" href="{FAVICON}" sizes="32x32">', s)
+    s = TOUCH_LINK.sub(f'<link rel="apple-touch-icon" href="{e(fav or TOUCH_ICON)}">', s)
+    return s
+
+
+def apply_settings():
+    st = load_settings()
+    if not st:
+        print("warning: data/settings.json missing - general settings not applied")
+        return
+    regions = {lang: settings_regions(st, lang) for lang in ("vi", "en")}
+    for f in SITE.rglob("*.html"):
+        rel = f.relative_to(SITE).parts
+        if rel[0] in ("admin", "vendor", "assets"):
+            continue
+        s = read(f)
+        lang = "en" if '<html lang="en"' in s else "vi"
+        write(f, apply_settings_to(s, st, regions[lang]))
+
+
 # ------------------------------------------------------------------ cleanup
 def remove_orphans(parent, keep):
     base = SITE / parent
@@ -629,6 +817,7 @@ def main():
     remove_orphans("product", en)
     remove_orphans("tin-tuc", nvi)
     remove_orphans("news", nen)
+    apply_settings()
     sys.path.insert(0, str(ROOT / "scripts"))
     import seo
     seo.main()

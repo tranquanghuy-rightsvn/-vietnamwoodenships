@@ -10,6 +10,7 @@ kỳ file nào trong `gas/` hoặc `scripts/build.py`. Theo playbook chung ở s
    1. Sản phẩm — full CRUD, song ngữ Việt/Anh, nút dịch Việt -> Anh.
    2. Tin tức (bài viết) — full CRUD, song ngữ Việt/Anh, nút dịch Việt -> Anh.
    3. Quản lý người dùng — root (ngầm định) > admin > editor.
+   4. Cài đặt chung (thêm 20/11/2026) — logo, favicon, ảnh nền trang chủ, liên hệ... (mục V-c).
    KHÔNG có: danh mục sản phẩm qua CMS (7 danh mục CỐ ĐỊNH, xem mục II.2), form liên hệ/đơn hàng
    (giỏ hàng + thanh toán của site chỉ lưu localStorage phía khách, không gửi về server), trang
    tĩnh (giới thiệu, liên hệ, hướng dẫn... sửa tay).
@@ -130,6 +131,25 @@ V-b. Quy tắc dịch (nút "🌐 Dịch sang English" của sản phẩm + tin 
      qua lại + `x-default` = bản Việt (Google hiểu là 2 phiên bản của cùng 1 nội dung); nút đổi
      ngôn ngữ trên header trỏ đúng bài tương ứng. Chỉ khai báo ngôn ngữ CÓ trang thật (không có ja).
 
+V-c. Cài đặt chung — admin trở lên (editor không thấy tab, server chặn), thêm 20/11/2026:
+   - 1 file `data/settings.json` (cũng là file trigger build). Field: `logo`, `favicon` (trống = icon
+     mặc định), `logoAltVi/En`, `slides` [{image, captionVi, captionEn}] (ảnh nền trang chủ, ≥ 1),
+     `companyVi/En`, `legalName`, `addressVi/En` (phẩy ngăn cách, tỉnh/thành cuối — JSON-LD tách
+     theo dấu phẩy), `phone` (BẮT BUỘC), `phone2`, `phone2NoteVi/En`, `email` (BẮT BUỘC), `email2`,
+     `mapEmbed` (dán cả mã <iframe> của Google Maps cũng được, server tự lấy link
+     https://www.google.com/maps/embed?...), `aboutTitleVi/En`, `aboutVi/En`, `siteName`, `updatedAt`.
+     Field tiếng Anh trống -> trang tiếng Anh dùng bản Việt. Nút "🌐 Dịch sang English" (`translateSettings`).
+   - Ảnh: `html/assets/uploads/settings/{logo|favicon|slide}-NN.{jpg|png}` — số tăng dần (đổi ảnh =
+     đổi URL, không dính cache). Logo/favicon PNG giữ nền trong suốt. Lưu xong ảnh trong thư mục này
+     không còn dùng bị xoá; ảnh cũ `/assets/img/...` không bao giờ bị xoá.
+   - Build (`apply_settings()` trong scripts/build.py) ghi đè vùng `<!-- set:NAME -->` ...
+     `<!-- /set:NAME -->` của MỌI trang (topbar, topbar-m, logo, header-phone, footer, slider,
+     contact, contact-map, about-contact — mốc do scripts/add_settings_markers.py chèn, GIỮ NGUYÊN
+     khi sửa tay trang) + link `data-set="phone"` / `data-set="email"` (nút Gọi ngay, dòng "Gọi ...")
+     + `<link rel="icon">`; seo.py lấy logo/điện thoại/email/địa chỉ cho JSON-LD Organization.
+   - KHÔNG tự đổi: số điện thoại/địa chỉ người viết gõ trong NỘI DUNG sản phẩm/bài viết (sửa trong
+     từng bài), thông tin tài khoản ngân hàng ở trang thanh toán (đang là dữ liệu demo).
+
 VI. Form công khai: KHÔNG áp dụng cho dự án này (mục 0).
 
 VII. UX chung (mặc định playbook, gas-backend-patterns.md mục 9/16/17/17b/18):
@@ -158,11 +178,12 @@ VIII. Kiến trúc lưu trữ:
      - `data/news.json` — index: [{slug, slugEn, tag, titleVi, titleEn, descVi, descEn, cover,
        date, status, updatedAt}].
      - `data/news/<slug>.json` — đầy đủ: index + contentVi, contentEn.
+     - `data/settings.json` — Cài đặt chung (mục V-c); ảnh ở `html/assets/uploads/settings/`.
      - `html/assets/uploads/sp/<slug>/*`, `html/assets/uploads/tin-tuc/<slug>/*` — ảnh CMS, ghi
        THẲNG vào site.
    - Mọi commit của CMS có hậu tố `[CI-Skip]` (Cloudflare bỏ qua deploy, chỉ deploy commit build
      của CI; GitHub Actions vẫn chạy) — như adzo.
-   - `data/products.json` / `data/news.json` LUÔN ghi SAU CÙNG — 2 file trigger GitHub Actions
+   - `data/products.json` / `data/news.json` / `data/settings.json` LUÔN ghi SAU CÙNG — 3 file trigger GitHub Actions
      (`.github/workflows/build.yml`: `python3 scripts/build.py` -> commit `html/`).
    - Độ trễ từ lúc Lưu tới lúc thấy trên site: ~1–2 phút (Actions build + Cloudflare deploy).
 

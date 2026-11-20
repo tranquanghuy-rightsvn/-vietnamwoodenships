@@ -1,6 +1,6 @@
 name: Build html from data
 
-# Runs only when one of the two index files changes: the CMS always writes them LAST in a
+# Runs only when one of the index files (or data/settings.json) changes: the CMS always writes them LAST in a
 # save/delete (images and detail JSON first), so building on any earlier commit would deploy
 # a half-finished state. See GAS.md section VIII.
 on:
@@ -9,6 +9,7 @@ on:
     paths:
       - "data/products.json"
       - "data/news.json"
+      - "data/settings.json"
   workflow_dispatch: {}
 
 permissions:

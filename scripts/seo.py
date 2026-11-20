@@ -25,7 +25,30 @@ from posixpath import join, normpath
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "html"
 BASE = os.environ.get("SITE_URL", "https://vietnamwoodenships.com").rstrip("/")
-LOGO = "/assets/img/2023/06/logo.jpg"
+# General settings from the CMS ("Cài đặt chung", data/settings.json) - logo, phone, email, address.
+_SETTINGS_FILE = ROOT / "data" / "settings.json"
+ST = json.loads(_SETTINGS_FILE.read_text(encoding="utf-8")) if _SETTINGS_FILE.exists() else {}
+LOGO = ST.get("logo") or "/assets/img/2023/06/logo.jpg"
+
+
+def intl_phone(phone):
+    """'0908 062 685' -> '+84908062685'; '84 35234 4343' -> '+84352344343'."""
+    d = re.sub(r"[^\d+]", "", phone or "")
+    if d.startswith("+"):
+        return d
+    if d.startswith("0"):
+        return "+84" + d[1:]
+    return "+" + d if d else ""
+
+
+def contact_line(lang):
+    addr = ST.get("addressEn" if lang == "en" else "addressVi") or ST.get("addressVi") or ""
+    phone = ST.get("phone", "")
+    if lang == "en":
+        phone = intl_phone(phone).replace("+84", "+84 ", 1) if phone.startswith("0") else phone
+        if phone.startswith("+84 ") and len(phone) == 13:
+            phone = phone[:7] + " " + phone[7:10] + " " + phone[10:]
+    return " – ".join(x for x in (addr, phone) if x)
 
 # Pages with no search value (per-user state, or no real content yet):
 # noindex,follow and left out of the sitemap.
@@ -38,8 +61,8 @@ NOINDEX = {
 DESC = {
     "gioi-thieu": "Vietnam Wooden Ships – xưởng sản xuất thuyền mỹ nghệ tại Long Thành, Đồng Nai, chuyên chế tác thủ công và xuất khẩu mô hình tàu, du thuyền, thuyền buồm và nội thất gỗ.",
     "about": "Vietnam Wooden Ships – an art boat workshop in Long Thanh, Dong Nai, Vietnam, handcrafting and exporting ship models, yachts, sailing boats and wooden furniture.",
-    "lien-he": "Liên hệ Vietnam Wooden Ships để được tư vấn mẫu mã, kích thước và báo giá mô hình thuyền: 199 ấp 1B, Phước Thái, Long Thành, Đồng Nai – 0908 062 685.",
-    "contact": "Contact Vietnam Wooden Ships for advice on models, sizes and a quote for handmade ship models: 199 Hamlet 1B, Phuoc Thai, Long Thanh, Dong Nai – +84 908 062 685.",
+    "lien-he": "Liên hệ Vietnam Wooden Ships để được tư vấn mẫu mã, kích thước và báo giá mô hình thuyền: " + contact_line("vi") + ".",
+    "contact": "Contact Vietnam Wooden Ships for advice on models, sizes and a quote for handmade ship models: " + contact_line("en") + ".",
     "tin-tuc": "Tin tức, kiến thức và hướng dẫn chọn mua, bảo quản mô hình tàu thuyền thủ công từ xưởng Vietnam Wooden Ships.",
     "news": "News, tips and guides on choosing and caring for handmade ship models from the Vietnam Wooden Ships workshop.",
     "huong-dan-mua-hang": "Hướng dẫn mua hàng tại Vietnam Wooden Ships: chọn sản phẩm, thêm vào giỏ hàng, kiểm tra giỏ và thanh toán khi nhận hàng hoặc quét mã QR.",
@@ -109,33 +132,42 @@ def ld(obj):
 
 def org(lang):
     vi = lang == "vi"
-    return {
+    parts = [x.strip() for x in (ST.get("addressVi") or "").split(",") if x.strip()]
+    address = {"@type": "PostalAddress"}
+    if len(parts) >= 3:
+        address.update(streetAddress=", ".join(parts[:-2]), addressLocality=parts[-2], addressRegion=parts[-1])
+    elif parts:
+        address["streetAddress"] = ", ".join(parts)
+    address["addressCountry"] = "VN"
+    contacts = []
+    for kind, phone, email in (("customer service", ST.get("phone"), ST.get("email")),
+                               ("sales", ST.get("phone2"), ST.get("email2"))):
+        if phone or email:
+            cp = {"@type": "ContactPoint", "contactType": kind}
+            if phone:
+                cp["telephone"] = intl_phone(phone)
+            if email:
+                cp["email"] = email
+            cp["availableLanguage"] = ["vi", "en"]
+            contacts.append(cp)
+    o = {
         "@type": "Organization",
         "@id": BASE + "/#organization",
-        "name": "Vietnam Wooden Ships",
-        "legalName": "Công ty TNHH Hoa Tay Việt",
+        "name": ST.get("siteName") or "Vietnam Wooden Ships",
+        "legalName": ST.get("legalName") or "Công ty TNHH Hoa Tay Việt",
         "description": "Xưởng sản xuất thuyền mỹ nghệ" if vi else "Art boat workshop",
         "url": BASE + "/",
         "logo": {"@type": "ImageObject", "url": BASE + LOGO},
         "image": BASE + LOGO,
-        "email": "hoatayviet.modelship@gmail.com",
-        "telephone": "+84908062685",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "199 ấp 1B, Phước Thái",
-            "addressLocality": "Long Thành",
-            "addressRegion": "Đồng Nai",
-            "addressCountry": "VN",
-        },
-        "contactPoint": [
-            {"@type": "ContactPoint", "contactType": "customer service",
-             "telephone": "+84908062685", "email": "hoatayviet.modelship@gmail.com",
-             "availableLanguage": ["vi", "en"]},
-            {"@type": "ContactPoint", "contactType": "sales",
-             "telephone": "+84352344343", "email": "lywoodenmodelboat@gmail.com",
-             "availableLanguage": ["vi", "en"]},
-        ],
     }
+    if ST.get("email"):
+        o["email"] = ST["email"]
+    if ST.get("phone"):
+        o["telephone"] = intl_phone(ST["phone"])
+    o["address"] = address
+    if contacts:
+        o["contactPoint"] = contacts
+    return o
 
 
 def website(lang, search_page):
